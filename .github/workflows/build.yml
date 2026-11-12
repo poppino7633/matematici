@@ -1,0 +1,52 @@
+name: Compilează PDF-uri
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Instalează LaTeX
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends latexmk texlive-latex-extra texlive-fonts-recommended texlive-science
+      - name: Compilează lecțiile
+        run: bash scripts/build-pdfs.sh . .build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lectii-pdf
+          path: .build/**/*.pdf
+          if-no-files-found: error
+          retention-days: 30
+  release:
+    if: startsWith(github.ref, 'refs/tags/v') && github.event_name == 'push'
+    needs: build
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: lectii-pdf
+          path: pdf
+      - name: Publică PDF-urile în Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RELEASE_TAG: ${{ github.ref_name }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mapfile -d '' pdfs < <(find pdf -type f -name '*.pdf' -print0)
+          if gh release view "$RELEASE_TAG" >/dev/null 2>&1; then
+            gh release upload "$RELEASE_TAG" "${pdfs[@]}" --clobber
+          else
+            gh release create "$RELEASE_TAG" "${pdfs[@]}" --verify-tag --generate-notes
+          fi
