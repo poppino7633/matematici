@@ -9,7 +9,34 @@ permissions:
   contents: read
 
 jobs:
+  documents:
+    runs-on: ubuntu-24.04
+    outputs:
+      sources: ${{ steps.sources.outputs.sources }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: sources
+        shell: python
+        run: |
+          import json
+          import os
+          import pathlib
+          import subprocess
+          files = subprocess.check_output(["git", "ls-files", "-z", "*.tex"]).decode().split("\0")
+          sources = [name for name in files if name and "\\documentclass" in pathlib.Path(name).read_text()]
+          if not sources:
+              raise SystemExit("Nu s-au găsit documente LaTeX.")
+          names = [pathlib.Path(name).stem for name in sources]
+          if len(names) != len(set(names)):
+              raise SystemExit("Documentele trebuie să aibă nume PDF distincte.")
+          with open(os.environ["GITHUB_OUTPUT"], "a") as output:
+              output.write("sources=" + json.dumps(sources) + "\n")
   build:
+    needs: documents
+    strategy:
+      fail-fast: false
+      matrix:
+        source: ${{ fromJSON(needs.documents.outputs.sources) }}
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
@@ -18,11 +45,13 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends latexmk texlive-latex-extra texlive-fonts-recommended texlive-science
       - name: Compilează lecțiile
-        run: bash scripts/build-pdfs.sh . .build
-      - uses: actions/upload-artifact@v4
+        env:
+          LATEX_SOURCE: ${{ matrix.source }}
+        run: bash scripts/build-pdfs.sh . .build "$LATEX_SOURCE"
+      - uses: actions/upload-artifact@v7
         with:
-          name: lectii-pdf
           path: .build/**/*.pdf
+          archive: false
           include-hidden-files: true
           if-no-files-found: error
           retention-days: 30
@@ -33,9 +62,10 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         with:
-          name: lectii-pdf
+          pattern: '*.pdf'
+          merge-multiple: true
           path: pdf
       - name: Publică PDF-urile în Release
         env:
