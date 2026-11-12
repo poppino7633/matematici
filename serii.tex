@@ -1,0 +1,366 @@
+\documentclass{article}
+\usepackage{mate}
+
+\title{Serii}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Limite de siruri complexe}
+  \begin{enumerate}
+
+    \definitie Fie $(z_n)_{n \geq q}$ un sir de numere complexe. Sirul este \term{convergent} daca $\exists L \in \mathbb{C}$ astfel incat $\forall \varepsilon > 0, \exists n_{\varepsilon} \in \mathbb{N}$ astfel incat $\forall n \geq n_{\varepsilon}$ avem $\abs{z_n - L} < \varepsilon$. (Orice vecinatate a numarului complex $L$ contine toti termenii sirului, exceptand cel mult un numar finit)
+    \definitie Un sir este \term{divergent} daca nu este convergent.
+
+\notatie Daca exista limita, atunci aceasta este unica si se noteaza $L = \lim_{n \to \infty} z_n$ sau $z_n \to L$
+
+\observatie $z_n \to L \Leftrightarrow \abs{z_n - L} \to 0$ .
+\observatie $z_n \to 0 \Leftrightarrow \abs{z_n} \to 0$.
+\observatie $z_n \to L \Rightarrow \abs{z_n} \to \abs{L}$.
+\proprietate Daca $z_n \to L_1$ si $v_n \to L_2$, atunci $z_n + v_n \to L_1 + L_2$.
+\proprietate Daca $z_n \to L_1$ si $v_n \to L_2$, atunci $z_n \cdot v_n \to L_1 \cdot L_2$.
+\proprietate Daca $z_n \to L$ si $\alpha \in \mathbb{R}$, atunci $\alpha z_n \to \alpha L$
+\proprietate Daca $z_n \to L_1$ si $v_n \to L_2 \neq 0$, atunci $\exists N \in \mathbb{N}$ astfel incat $ v_n \neq 0, \forall n \geq N$ si $\frac{z_n}{v_n} \to \frac{L_1}{L_2}$
+\proprietate Daca $z_n = x_n + iy_n$, unde $x_n, y_n \in \mathbb{R}$, iar $L = a + ib$, unde $a, b \in \mathbb{R}$, avem $z_n \to L \Leftrightarrow x_n \to a \text{ si } y_n \to b$
+
+\proprietate Daca un sir de numere reale este monoton si marginit, atunci este convergent.
+\proprietate Daca un sir de numere reale este monoton si nemarginit, atunci este divergent.
+\proprietate Orice sir de numere reale monoton are limita, finita sau infinita.
+
+\propozitie (Criteriul majorarii) Fie $(z_n)_{n \geq q}$ un sir de numere complexe si $(a_n)_{n \geq N}, N \geq q$ un sir de numere reale cu $a_n \to 0$, astfel incat $\abs{z_n - L} \leq a_n, \forall n \geq N$, atunci $z_n \to L$. 
+\observatie Daca un sir de numere complexe este convergent, atunci este si marginit ($\exists M \geq 0$ astfel incat $\abs{z_n} \leq M, \forall n \geq q)$.
+
+\definitie Fie $(z_n)_{n \geq q}$ un sir de numere complexe si $(k_n)_{n \geq p}$ un sir strict crescator de numere naturale, unde $k_n \geq q, \forall n \geq p$. Sirul $(z_{k_n})_{n \geq p}$ se numeste \term{subsir} al sirului $(z_n)_{n \geq q}$.
+
+\propozitie Fie $(z_n)_{n \geq q}$ un sir de numere complexe si $(z_{k_n})_{n \geq p}$ un subsir al sau. Daca $z_n \to L$, atunci $z_{k_n} \to L$. (Daca un sir este convergent, orice subsir al sau este convergent la aceeasi limita)
+\proprietate Daca $z_n \to L$, atunci $z_{n + k} \to L, \forall k \geq 0$.
+
+\exemplu $z_n = \frac{n}{2n+1} + i\left(1+\frac{1}{n}\right)^n \to \frac{1}{2} + ie$
+\exemplu $z_n = (-1)^n + i\left(1 + \frac{1}{n}\right)^n$ este divergent.
+
+
+
+\definitie Sirul $(z_n)_{n \geq q}$ se numeste sir Cauchy daca $\forall \varepsilon > 0, \exists n_{\varepsilon} \geq q$ astfel incat $\forall n \geq n_{\varepsilon}, p \in \mathbb{N}^*$ avem $\abs{z_{n+p} - z_n} < \varepsilon$. (Distanta dintre oricare doi termeni devine arbitrar de mica)
+
+\propozitie Fie $(z_n)_{n \geq q}$ un sir de numere complexe. Atunci $(z_n)_{n \geq q}$ este convergent daca si numai daca este sir Cauchy.
+
+\observatie Aceasta relatie nu are loc in orice spatiu metric. De exemplu, in $\mathbb{Q}$ exista siruri Cauchy care nu au limita rationala.
+
+\section{Convergenta unei serii}
+
+\notatie Seriile se noteaza cu forma $\sum_{n \geq q} z_n$.
+\definitie Sirul $(S_n)_{n \geq q}$, $S_n = \sum_{k = q}^{n}z_{k}$ se numeste \term{sirul de sume partiale} asociat seriei $\sum_{n \geq q} z_n$.
+\definitie Seria $\sum_{n \geq q} z_n$ este \term{convergenta} daca sirul sau de sume partiale este convergent.
+\definitie Daca o serie $\sum_{n \geq q} z_n$ este convergenta, atunci \term{suma seriei} este \\ $\lim_{n \to \infty} S_n \xlongequal{\text{not}} \sum_{n = q}^{\infty} z_n \in \mathbb{C}$
+
+
+\proprietate Fie $p, q \in \mathbb{N}, p > q$. Atunci seria $\sum_{n \geq q} z_n$ convergenta $\Leftrightarrow \sum_{n \geq p} z_n$ convergenta.
+
+\proprietate Daca $\sum_{n \geq q} z_n$ si $\sum_{n \geq q} v_n$ sunt serii convergente, atunci seria $\sum_{n \geq q} (\alpha z_n + \beta v_n)$ este convergenta, $\forall \alpha, \beta \in \mathbb{C}$ iar suma $\sum_{n = q}^{\infty} (\alpha z_n + \beta v_n) = \alpha \sum_{n = q}^{\infty}z_n + \beta \sum_{n = q}^{\infty}v_n$. (Combinatia liniara de serii convergente este egala cu seria combinatiei liniare)
+
+\proprietate Daca $\sum_{n \geq q} z_n$ este convergenta, iar $\sum_{n \geq q} v_n$ este divergenta, atunci $\sum_{n \geq q} (z_n + v_n)$ este divergenta.
+
+\proprietate Daca $\sum_{n \geq q} z_n$ este o serie divergenta si $\alpha \in \mathbb{C}^*$, atunci seria $\sum_{n \geq q} \alpha z_n$ este divergenta.
+
+\begin{tcolorbox}
+\propozitie (Criteriul necesar) Daca $\sum_{n \geq q} z_n$ este convergenta, atunci $z_n \to 0$.
+\end{tcolorbox}
+
+\propozitie (Seria geometrica) Fie $z$ un numar complex. Daca $\abs{z} < 1$, atunci $\sum_{n \geq 0} z^n$ este convergenta si \\ $\sum_{n = 0}^{\infty} z^n = \frac{1}{1-z}$. Daca $\abs{z} \geq 1$, atunci $\sum_{n \geq 0} z^n$ este divergenta.
+
+\observatie Daca $p_1, p_2, q \in \mathbb{N}, p_1 \neq p_2$ si $p_1, p_2 > q$, avem $\sum_{n \geq p_1} z_n$ convergenta $\Leftrightarrow \sum_{n \geq p_2} z_n$ convergenta.
+
+
+\corolar Daca $\sum_{n \geq q} z_n$ este o serie convergenta si $\alpha \in \mathbb{C}$, atunci seria $\sum_{n \geq q} \alpha z_n$ este convergenta, iar suma ei $\sum_{n = q}^{\infty} \alpha z_n = \alpha \sum_{n = q}^{\infty} z_n $. (Scalarul iese in fata la serii convergente)
+
+
+
+
+\propozitie (Criteriul Cauchy) Fie $(z_n)_{n \geq q}$ sir de nr complexe. Seria $\sum_{n \geq q} z_n$ convergenta daca si numai daca sirul sumelor partiale este sir Cauchy, adica $\forall \varepsilon > 0, \exists n_{\varepsilon} \geq q$ astfel incat $\forall n \geq n_{\varepsilon}, p \in \mathbb{N}^*$ avem $\abs{\sum_{k= n}^{n+p} z_k} < \varepsilon$.
+
+
+
+\end{enumerate}
+\section{Serii cu termeni pozitivi}
+\begin{enumerate}
+
+\observatie Daca o serie are doar termeni reali pozitivi, atunci sirul sumelor partiale este crescator, deoarece $S_{n+1} - S_n = x_{n+1} \geq 0, \forall n$.
+\observatie O astfel de serie este convergenta daca si numai daca sirul sumelor partiale este marginit superior.
+
+\begin{tcolorbox}
+\definitie O serie de forma $\sum_{n \geq 1} \frac{1}{n^\alpha}$, $\alpha \in \mathbb{R}$ se numeste \term{serie Riemann}.
+\observatie O astfel de serie este convergenta $\Leftrightarrow \alpha > 1$.
+\end{tcolorbox}
+
+
+\begin{tcolorbox}
+\propozitie (Criteriul de comparatie cu inegalitati) Fie doua serii cu termeni pozitivi $\sum_{n \geq q} x_n$ si $\sum_{n \geq q} y_n$.
+  \begin{enumerate}
+    \item Daca $\exists N \geq q$ astfel incat $\forall n \geq N$ avem $0 \leq x_n \leq y_n$, iar $\sum_{n} y_n$ este convergenta, atunci $\sum_{n} x_n$ este convergenta.
+    \item Daca $\exists N \geq q$ astfel incat $\forall n \geq N$ avem $x_n \geq y_n \geq 0$, iar $\sum_{n} y_n$ este divergenta, atunci $\sum_{n} x_n$ este divergenta.
+  \end{enumerate}
+\end{tcolorbox}
+
+\begin{tcolorbox}
+  \propozitie (Criteriul de comparatie la limita) Fie doua serii $\sum_{n \geq q}x_n$ si $\sum_{n \geq q}y_n$, $N \geq q$ astfel incat $\forall n \geq N, x_n \geq 0$ si $y_n > 0$. Presupunem ca $\exists \lim_{n \to \infty} \frac{x_n}{y_n} \xlongequal{\text{not}} L \in \overline{\mathbb{R}}$.
+
+  \begin{enumerate}
+    \item Daca $L$ este finit si $\sum_{n} y_n$ este convergenta, atunci $\sum_{n} x_n$ este convergenta.
+    \item Daca $L \neq 0$ si $\sum_{n} y_n$ este divergenta, atunci $\sum_{n} x_n$ este divergenta.
+    \item Daca $L$ este finit si nenul, atunci $\sum_{n} x_n$ si $\sum_{n} y_n$ au aceeasi natura.
+
+  \end{enumerate}
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\propozitie (Criteriul radical) Fie $N > 0$ si $x_n \geq 0, \forall n \geq N$, astfel incat $\sqrt[n]{x_n} \to L \in \mathbb{R}$.
+
+\begin{enumerate}
+  \item Daca $L < 1$, atunci $\sum_{n} x_n$ este convergenta.
+  \item Daca $L > 1$, atunci $\sum_{n} x_n$ este divergenta.
+\end{enumerate}
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\propozitie (Criteriul raportului) Fie $N > 0$ si $x_n > 0, \forall n \geq N$, astfel incat \\ $\frac{x_{n+1}}{x_n} \to L \in \mathbb{R}$.
+
+\begin{enumerate}
+  \item Daca $L < 1$, atunci $\sum_{n} x_n$ este convergenta.
+  \item Daca $L > 1$, atunci $\sum_{n} x_n$ este divergenta.
+\end{enumerate}
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\propozitie (Criteriul Raabe-Duhamel) Fie $N > 0$ si $x_n > 0, \forall n \geq N$, astfel incat \\ $n \left(\frac{x_n}{x_{n+1}} - 1 \right) \to L \in \mathbb{R}$.
+
+  \begin{enumerate}
+    \item Daca $L < 1$, atunci $\sum_{n} x_n$ este divergenta (!).
+    \item Daca $L > 1$, atunci $\sum_{n} x_n$ este convergenta (!).
+  \end{enumerate}
+\observatie Pentru acest criteriu, concluziile sunt inverse fata de criteriile precedente.
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\propozitie (Criteriul integral) Fie $f : [p, \infty) \to [0, \infty)$, $f$ descrescatoare. Atunci seria $\sum_{n \geq p} f(n)$ convergenta $\Leftrightarrow$ sirul $\left(\int_p^n f(x) dx \right)_{n \geq p}$ este convergent.
+\end{tcolorbox}
+
+\end{enumerate}
+\section{Serii absolut convergente}
+\begin{enumerate}
+
+  \definitie Fie $(z_n)_{n \geq q}$ un sir de numere complexe. Seria $\sum_{n \geq q} z_n$ se numeste \term{absolut convergenta} daca seria $\sum_{n \geq q} \abs{z_n}$ este convergenta.
+  \propozitie Orice serie absolut convergenta este si convergenta.
+
+  \propozitie (Criteriul Dirichlet) Fie o serie $\sum_{n \geq q} a_n z_n$,  $a_n \in \mathbb{R}_+$,  $z_n \in \mathbb{C}, \forall n \geq q$. Daca $\exists N \geq q$ astfel incat: \\ $a_{n+1} \leq a_n, \forall n \geq N$ (sirul este descrescator dupa un punct) si $a_n \to 0$, apoi \\ $\exists M > 0$ a.i $\forall n \geq N$ avem $\abs{z_N + z_{N+1} + ... + z_{n}} \leq M$ \\
+Atunci seria $\sum_{n \geq q} a_n z_n$ este convergenta.
+  
+\begin{tcolorbox}
+\propozitie (Criteriul Leibniz) Fie seria $\sum_{n \geq q} (-1)^n a_n$. Daca $\exists N \in \mathbb{N} \geq q$ a.i $\forall n \geq N$ avem $a_{n+1} \leq a_n$ si $a_n \to 0$, atunci $\sum_{n \geq q} (-1)^n a_n$ convergenta.
+\end{tcolorbox}
+
+\begin{tcolorbox}
+\propozitie (Criteriul Abel) Fie seria $\sum_{n \geq q} a_n z_n$, $a_n \in \mathbb{R}, z_n \in \mathbb{C}$. Daca $\exists N \geq q$ a.i $\forall n \geq N, a_{n+1} \leq a_n$ sau $a_{n+1} \geq a_n$ (sirul este monoton dupa un punct), $a_n$ convergent si $\sum_{n} z_n$ convergenta, atunci $\sum_{n \geq q} a_n z_n$ este convergenta.
+\end{tcolorbox}
+
+
+  
+
+\end{enumerate}
+\section{Siruri de functii cu valori complexe}
+\begin{enumerate}
+
+  \definitie Fie $(f_n)_{n \geq q}$, $f_n : A \to \mathbb{C}$, $A \neq \varnothing$ un sir de functii cu valori complexe si $f : A \to \mathbb{C}$. Spunem ca $f_n$ \term{converge simplu} (punctual) pe A la $f$ daca $\forall x \in A$, $\lim_{n \to \infty} f_n(x) = f(x)$.
+\notatie Daca $f_n$ converge simplu pe A la $f$ se noteaza $f_n \xrightarrow[A]{s} f$.
+
+\definitie Fie $(f_n)_{n \geq q}$, $f_n : A \to \mathbb{C}$, $A \neq \varnothing$ un sir de functii cu valori complexe si $f : A \to \mathbb{C}$. Spunem ca $f_n$ \term{converge uniform} pe A la $f$ daca $\forall \varepsilon > 0, \exists n_{\varepsilon} \geq q$ a.i $\forall n \geq n_{\varepsilon}, x \in A$ avem $\abs{f_n(x) - f(x)} < \varepsilon$.
+\notatie Daca $f_n$ converge uniform pe A la $f$ se noteaza $f_n \xrightarrow[A]{u} f$.
+
+\proprietate Daca $f_n \xrightarrow[A]{u} f$, atunci $f_n \xrightarrow[A]{s} f$.
+\proprietate Daca $f_n \xrightarrow[A]{u} f$ si $B \subseteq A$ atunci $f_n \xrightarrow[B]{s} f$.
+\proprietate Daca $A = A_1 \cup A_2$, $f_n \xrightarrow[A_1]{u} f$ si $f_n \xrightarrow[A_2]{u} f$, atunci $f_n \xrightarrow[A]{u} f$.
+\proprietate Daca $f_n \xrightarrow[A]{u} f$, atunci $\abs{f_n - f} \xrightarrow[A]{u} 0$.
+\proprietate $f_n \xrightarrow[A]{u} 0 \Leftrightarrow \abs{f_n} \xrightarrow[A]{u} 0$.
+\proprietate Daca $f_n \xrightarrow[A]{u} f$, atunci $\abs{f_n} \xrightarrow[A]{u} \abs{f}$.
+\proprietate Daca $f_n = \varphi, \forall n \geq q$, atunci $f_n \xrightarrow[A]{u} \varphi$.
+\proprietate Daca $(z_n)_{n \geq q}$ este un sir de numere complexe, $z_n \to L$ si $f_n(x) = z_n, \forall n \geq q, x \in A$, atunci $f_n \xrightarrow[A]{u} L$.
+
+\begin{tcolorbox}
+\proprietate $f_n \xrightarrow[A]{u} f \Leftrightarrow \sup_{x \in A}  \abs{f_n(x) - f(x)} \to 0$.
+\end{tcolorbox}
+
+\proprietate Fie $f_n, f : I \to \mathbb{C}$, $I \subseteq \mathbb{R}$ interval, $n \geq q$ si $g : I \to \mathbb{C}$. Daca $f_n \xrightarrow[I]{s} f$, $f_n$ derivabile si $f_n' \xrightarrow[I]{u} g$, atunci $f$ e derivabila pe $I$ si $f' = g$. In plus, daca $I$ este marginit, atunci $f_n \xrightarrow[I]{u} f$.
+
+\proprietate Daca $f_n \xrightarrow[A]{u} f$ si $g_n \xrightarrow[A]{u} g$, atunci $\alpha f_n + \beta g_n \xrightarrow[A]{u} \alpha f + \beta g$, $\forall \alpha, \beta \in \mathbb{C}$.
+
+\proprietate Daca $f_n \xrightarrow[A]{u}f$, atunci $\alpha f_n \xrightarrow[A]{u} \alpha f$, $\forall \alpha \in \mathbb{C}$.
+
+\proprietate Daca $f_{k_n}$ este un subsir al sirului $f_n \xrightarrow[A]{u} f$, atunci $f_{k_n} \xrightarrow[A]{u} f$.
+
+  \definitie Fie $(f_n)_{n \geq q}, f_n : A \to \mathbb{C}$ un sir de functii cu $A \neq \varnothing$. Atunci $f_n$ se numeste \term{uniform Cauchy} pe $A$ daca $\forall \varepsilon > 0, \exists n_{\varepsilon} \geq q$ a.i $\forall n \geq n_{\varepsilon}, p \geq 1, x \in A$ avem $\abs{f_{n + p}(x) - f_n(x)} < \varepsilon$.
+
+
+\end{enumerate}
+\section{Serii de functii}
+\begin{enumerate}
+
+  \definitie Fie $f_n : A \to \mathbb{C}$, $A \neq \varnothing$, $n \geq q$. Seria $\sum_{n \geq q} f_n$ se numeste \term{convergenta simplu} pe $A$ daca $\forall x \in A$ seria $\sum_{n \geq q} f_n(x)$ este convergenta.
+
+  \definitie Fie $f_n : A \to \mathbb{C}$, $A \neq \varnothing$, $n \geq q$. Seria $\sum_{n \geq q} f_n$ se numeste \term{convergenta uniform} pe $A$ daca sirul sumelor partiale asociat $S_n(x) = f_q(x) + f_{q+1}(x) + \dots + f_{n}(x)$ este uniform convergent pe $A$.
+  \proprietate Daca $\sum_{n \geq q} f_n$ e convergenta uniform pe $A$, atunci $\sum_{n \geq q} \alpha f_n $ este uniform convergenta pe $A$, $\forall \alpha \in \mathbb{C}$.
+  \proprietate Daca $\sum_{n \geq q} f_n$ si $\sum_{n \geq q} g_n$ sunt convergente uniform pe $A$, atunci $\sum_{n \geq q} (\alpha f_n + \beta g_n)$ este uniform convergenta pe $A$, $\forall \alpha, \beta \in \mathbb{C}$.
+  \proprietate Fie $(z_n)_{n \geq q}$ un sir de numere complexe. Daca $\sum_{n \geq q} z_n$ este convergenta, atunci e si uniform convergenta pe orice multime nevida $A$.
+
+  \propozitie (Criteriul necesar) Daca $\sum_{n \geq q} f_n$ e uniform convergenta pe $A$, atunci $f_n \xrightarrow[A]{u} 0$.
+  
+  \propozitie Daca $f_n$ este continua $\forall n \geq q$ si $\sum_{n \geq q} f_n$ e uniform convergenta pe intervalul $I$, atunci $S_n$ e continua pe $I$, $S_n \xrightarrow[I]{u} S$ si $\int_{a}^{b} S_n(x) \to \int_{a}^{b} S(x)$, $\forall [a, b] \subseteq I$.
+
+\begin{tcolorbox}
+  \teorema (Transfer de continuitate) Fie $f_n : I \to \mathbb{C}$, $I \subseteq \mathbb{R}$ interval, $f_n$ continua $\forall n \geq q$. Daca $\sum_{n \geq q} f_n$ e uniform convergenta pe $I$ atunci suma seriei: $\sum_{n = q}^{\infty} f_n$ este continua pe $I$.
+\end{tcolorbox}
+
+\begin{tcolorbox}
+  \teorema (Integrare termen cu termen) Fie $f_n : [a, b] \to \mathbb{C}$, $f_n$ continua pe $[a, b]$, $\forall n \geq q$. Daca $\sum_{n \geq q} f_n$ este uniform convergenta pe $[a, b]$, atunci $\sum_{n \geq q} \left(\int_a^b f_n(x) dx \right)$ este convergenta si $\sum_{n = q}^{\infty} \left(\int_a^b f_n(x) dx \right) = \int_a^b \sum_{n = q}^{\infty} f_n(x)$.
+\end{tcolorbox}
+
+\begin{tcolorbox}
+  \teorema (Derivare termen cu termen) Fie $f_n : I \to \mathbb{C}$, $I \subseteq \mathbb{R}$ interval, $f_n$ derivabila pe $I$, $\forall n \geq q$. Daca $\sum_{n \geq q}f_n$ e convergenta simplu pe $I$ si $\sum_{n \geq q} f'_n$ e convergenta uniform pe $I$, atunci $\sum_{n = q}^{\infty} f_n$ e derivabila si $\left(\sum_{n = q}^{\infty} f_n \right)' = \sum_{n = q}^{\infty} f_n'$.
+\end{tcolorbox}
+
+
+
+  \propozitie Fie $f_n : A \to \mathbb{C}$, $\forall n \geq q$ si $g_n : A \to \mathbb{R}$, $\forall n \geq N$, $N \geq q$. Daca $\abs{f_n(x)} \leq g_n(x)$, $\forall n \geq N, x \in A$, iar $\sum_{n \geq N} g_n$ e uniform convergenta pe $A$, atunci $\sum_{n \geq N} f_n$ e uniform convergenta pe $A$.
+
+  \propozitie (Criteriul Cauchy pentru serii de functii). Fie $f_n : A \to \mathbb{C}$, $A \neq \varnothing$, $n \geq q$ un sir de functii. Atunci $\sum_{n \geq q} f_n$ uniform convergenta pe $A$ $\Leftrightarrow \forall \varepsilon > 0, \exists n_{\varepsilon} \geq q$ a.i $\forall n \geq n_{\varepsilon}, p \geq 1, x \in A$ avem $\abs{f_{n+1} + f_{n+2} + \dots + f_{n + p}} < \varepsilon$.
+
+  \observatie Pentru siruri de functii cu valori complexe, definitiile pentru sir uniform Cauchy si sir uniform convergent sunt echivalente. (Atentie! Nu e valabil pentru orice sir de functii)
+
+  
+\begin{tcolorbox}
+  \propozitie (Criteriul Weierstrass) Fie $f_n : A \to \mathbb{C}$, $A \neq \varnothing$, $n \geq q$. Daca $\exists (a_n)_{n \geq N}$ un sir de numere reale astfel incat $\abs{f_n(x)} \leq a_n, \forall n \geq N, x \in A$, iar $\sum_{n \geq N} a_n$ e convergenta, atunci $\sum_{n \geq q} f_n$ e uniform convergenta.
+\end{tcolorbox}
+
+  \propozitie (Criteriul Dirichlet pentru serii de functii). Fie $f_n : A \to \mathbb{R}$, $g_n : A \to \mathbb{C}$, $n \geq q$. Daca $f_{n+1}(x) \leq f_n(x)$, $\forall n \geq q, x \in A$, $f_n \xrightarrow[A]{u} 0$ si $\exists M > 0, r \geq q$ a.i $\forall n \geq r, x \in A$ avem $\abs{g_r(x) + g_{r+1}(x) + \dots + g_n(x)} \leq M$ (sirul sumelor partiale pentru seria $\sum_{n \geq q} g_n$ e egal marginit), atunci $\sum_{n \geq q} \left(f_n(x) \cdot g_n(x)\right)$ e uniform convergenta pe $A$.
+
+\begin{tcolorbox}
+  \propozitie (Criteriul Leibniz pentru serii de functii). Fie $f_n : A \to \mathbb{R}$, $n \geq q$ un sir de functii, $A \neq \varnothing$. Daca $\exists N \geq q$ a.i $\forall n \geq N, x \in A$ avem $f_{n+1}(x) \leq f_n(x)$ si $f_n \xrightarrow[A]{u} 0$, atunci $\sum_{n \geq q} (-1)^n f_n(x)$ e uniform convergenta pe $A$.
+\end{tcolorbox}
+
+\begin{tcolorbox}
+  \propozitie (Criteriul Abel pentru serii de functii). Fie $f_n : A \to \mathbb{R}$, $g_n : A \to \mathbb{C}$, $n \geq q$.  Daca $f_{n+1}(x) \leq f_n(x)$ (sau $f_{n+1}(x) \geq f_n(x)$), $\forall n \geq q$, $\exists M > 0, N \geq q$ a.i $\forall n \geq q, x \in A$ avem $\abs{f_n(x)} \leq M$ si $\sum_{n \geq q} g_n$ e uniform convergenta pe $A$, atunci $\sum_{n \geq q} (f_n \cdot g_n)$ e uniform convergenta pe $A$.
+\end{tcolorbox}
+  
+
+
+
+\end{enumerate}
+\section{Serii de puteri}
+\begin{enumerate}
+  \definitie Se numeste o \term{serie de puteri} o serie de forma $\sum_{n \geq 0} a_n z^n$, unde $(a_n)_{n \geq 0}$ e un sir de numere complexe si $z \in \mathbb{C}$.
+  \observatie Pentru $z = 0$ seria de puteri este convergenta si suma ei este egala cu $a_0$.
+  
+  \definitie Fie $\sum_{n \geq 0} a_n z^n$ o serie de puteri si $R \xlongequal{\text{not}} \sup \left\{r \in \mathbb{R}_+ \middle\vert \sum_{n \geq 0} \abs{a_n} r^n \text{ convergenta } \right\}$.
+
+\begin{tcolorbox}
+  \propozitie Fie $R$ raza de convergenta a seriei $\sum_{n \geq 0} a_n z^n$. Atunci: 
+  \begin{enumerate}
+    \item Daca $\abs{z} < R$, atunci $\sum_{n \geq 0} a_n z^n$ e absolut convergenta.
+    \item Daca $\abs{z} > R$, atunci $\sum_{n \geq 0} a_n z^n$ e divergenta.
+  \end{enumerate}
+  \observatie Daca $R = \infty$, seria e convergenta pentru orice $z$.
+  \observatie Daca $R = 0$, seria e divergenta pentru orice $z$ nenul.
+\end{tcolorbox}
+
+\proprietate Fie $R$ raza de convergenta a seriei $\sum_{n \geq 0} a_n x^n$, $x \in \mathbb{R}, R > 0$. Atunci, $\forall r \in (0, R)$, $\sum_{n \geq 0} a_n x^n$ este uniform convergenta pe $[-r , r]$.
+
+  \propozitie Fie $R$ raza de convergenta a seriei $\sum_{n \geq 0} a_n z^n$. Atunci: 
+  \begin{enumerate}
+    \item Daca $\sum_{n \geq 0} a_n z^n$ e convergenta, atunci $\abs{z} \leq R$.
+    \item Daca $\sum_{n \geq 0} a_n z^n$ e divergenta, atunci $\abs{z} \geq R$.
+  \end{enumerate}
+
+\begin{tcolorbox}
+  \propozitie Fie $R$ raza de convergenta a seriei $\sum_{n \geq 0} a_n z^n$. Daca $\exists \lim_{n \to \infty} \sqrt[n]{\abs{a_n}} \xlongequal{\text{not}} L \in [0, \infty]$, atunci $R = \frac{1}{L}$.
+
+\corolar Fie $R$ raza de convergenta a seriei $\sum_{n \geq 0} a_n z^n$. Daca $\exists N \in \mathbb{N}$ astfel incat \\ $a_n \neq 0, \forall n \geq N$ si $\exists \lim_{n \to \infty} \frac{\abs{a_{n+1}}}{\abs{a_n}} \xlongequal{\text{not}} L \in [0, \infty]$, atunci $R = \frac{1}{L}$.
+\end{tcolorbox}
+
+
+\propozitie 
+  \begin{enumerate}
+    \item Seriile $\sum_{n \geq 0} a_n x^n$ si $\sum_{n \geq 1} n a_n x^{n-1}$ au aceeasi raza de convergenta.
+    \item Seriile $\sum_{n \geq 0} a_n x^n$ si $\sum_{n \geq 0} \frac{a_n}{n+1} x^{n+1}$ au aceeasi raza de convergenta. 
+  \end{enumerate}
+
+\begin{tcolorbox}
+  \propozitie Fie $R$ raza de convergenta a seriei $\sum_{n \geq 0} a_n x^n$, $R > 0$. Fie $S : (-R, R) \to \mathbb{C}$, $S(x) = \sum_{n = 0}^{\infty} a_n x^n$ suma seriei. Atunci $S$ este infinit derivabila pe $(-R, R)$ si se poate deriva termen cu termen de oricate ori pe $(-R, R)$.
+  \observatie $S'(x) = \sum_{n = 1}^{\infty} n a_n x^{n-1}$, $\forall x \in (-R, R)$.
+\end{tcolorbox}
+
+  \propozitie Fie $R$ raza de convergenta a seriei $\sum_{n \geq 0} a_n x^n$, $R > 0$. Fie $S : (-R, R) \to \mathbb{C}$, $S(x) = \sum_{n = 0}^{\infty} a_n x^n$ suma seriei si $F : (-R, R) \to \mathbb{C}$ o primitiva a lui $S$. Atunci $\exists c \in \mathbb{C}$ astfel incat $\sum_{n = 0}^{\infty} \frac{a_n}{n + 1} x^{n+1} = F(x) + c$, $\forall x \in (-R, R)$. 
+
+\begin{tcolorbox}
+  \propozitie Fie $R$ raza de convergenta a seriei $\sum_{n \geq 0} a_n x^n$, $R > 0$. \\ Fie $S : (-R, R) \to \mathbb{C}$ suma seriei. Atunci $\forall [a, b] \subseteq (-R, R)$, $S(x)$ se poate integra pe $[a, b]$ si $\int_a^b S(x) dx = \int_a^b \left(\sum_{n = 0}^{\infty} a_n x^n \right)dx = \sum_{n=0}^{\infty}\int_a^b a_n x^n dx$.
+\end{tcolorbox}
+
+\newpage
+  \propozitie Fie $R$ raza de convergenta a seriei $\sum_{n \geq 0} a_n x^n$, $R \in (0, \infty)$ si $S$ suma seriei. Daca $\sum_{n \geq 0} a_n R^n$ e convergenta, atunci:
+  \begin{enumerate}[nosep]
+    \item $\sum_{n \geq 0} a_n x^n$ uniform convergenta pe $[0, R]$.
+    \item $S$ continua pe $[0, R]$.
+    \item $\sum_{n = 0}^{\infty} a_n R^n = \lim_{\substack{x \to R \\ x < R}} S(x)$.
+    \item $\int_0^R S(x) dx = \sum_{n = 0}^{\infty} \frac{a_n}{n+1} R^{n+1}$.
+  \end{enumerate}
+
+  \propozitie Fie $\sum_{n \geq 0} a_n$ convergenta, $a_n \in \mathbb{C}, \forall n \geq 0$. Atunci raza de convergenta a seriei este $R \geq 1$ si $\sum_{n = 0}^{\infty} a_n = \lim_{\substack{ x \to 1 \\ x < 1}} \sum_{n = 0}^{\infty} a_n x^n$.
+
+\begin{tcolorbox}
+  \propozitie Fie $(a_n)_{n \geq 0}$ sir de numere reale. Daca $\exists p \in \mathbb{N}$ astfel incat $a_{n+1} \leq a_n$, $\forall n \geq p$ si $a_n \to 0$, atunci $\sum_{n \geq p} (-1)^n a_n$ e convergenta. \\ Fie $S$ suma acestei serii si $(S_n)_{n \geq p}$ sirul de sume partiale asociat. Atunci $\abs{S_n - S} \leq a_{n+1}$ si:
+  \begin{enumerate}
+  \item Daca $S_n = \dots + a_n$, atunci $S_n \geq S$.
+  \item Daca $S_n = \dots - a_n$, atunci $S_n \leq S$.
+  \end{enumerate}
+
+  \observatie Aceasta propozitie poate fi folosita pentru aproximarea numerica a unor expresii. Mai intai se exprima ca suma unei astfel de serii, apoi se poate incadra intre doua sume partiale consecutive.
+
+\end{tcolorbox}
+
+\propozitie Raza de convergenta a seriei $\sum_{n \geq 0} \frac{z^n}{n!}$ este $\infty$.
+
+\begin{tcolorbox}
+\propozitie Urmatoarele functii pot fi exprimate ca sumele unor serii de puteri:
+  \begin{enumerate}[nosep]
+    \item $\ln(1+x) = \sum_{n=1}^{\infty} (-1)^{n-1} \cdot \frac{x^n}{n}$, $\forall x \in (-1, 1]$.
+    \item $\arctan x = \sum_{n = 0}^{\infty} (-1)^n \cdot \frac{x^{2n + 1}}{2n + 1}$, $\forall x \in [-1, 1]$.
+    \item $e^z = \sum_{n = 0}^{\infty} \frac{z^n}{n!}$, $\forall z \in \mathbb{C}$.
+    \item $\cos(z) = \frac{e^{iz} + e^{-iz}}{2} = \sum_{n=0}^{\infty} (-1)^n \cdot \frac{z^{2n}}{(2n)!}$
+    \item $\sin(z) = \frac{e^{iz} - e^{-iz}}{2i} = \sum_{n=0}^{\infty} (-1)^n \cdot \frac{z^{2n+1}}{(2n+1)!}$
+    \item $\cosh(z) \xlongequal{\text{def}} \frac{e^z + e^{-z}}{2}$, $\forall z \in \mathbb{C}$.
+    \item $\sinh(z) \xlongequal{\text{def}} \frac{e^z - e^{-z}}{2}$, $\forall z \in \mathbb{C}$.
+
+  \end{enumerate}
+  \observatie Extinderea pe $\mathbb{C}$ a functiilor $e^x$, $\cos(x)$, $\sin(x)$, etc. este definita prin aceste serii.
+  \observatie $e^{x + iy} = e^x(\cos(y) + i\sin(y))$.
+\end{tcolorbox}
+
+
+\end{enumerate}
+\section{Formula lui Taylor}
+\begin{enumerate}
+\begin{tcolorbox}
+  \teorema (Formula lui Taylor) Fie $f : I \to \mathbb{R}$, $I \subseteq \mathbb{R}$ interval, $f$ de $n+1$ ori derivabila, $n \in \mathbb{N}$ si $a \in I$. Atunci $\forall x \in I$, $x \neq a$, $\exists c \in [a, x]$ (sau $[x, a]$) astfel incat: 
+  $$f(x) = \sum_{k = 0}^{n} \frac{f^{(k)}(a)}{k!} (x-a)^k + \frac{f^{(n+1)}(c)}{(n+1)!} (x-a)^{n+1}$$
+
+  \notatie $T_{n, a} \xlongequal{\text{not}} \sum_{k = 0}^{n} \frac{f^{(k)}(a)}{k!} (x-a)^k$ se numeste \term{polinom Taylor de ordin $n$}.
+  \observatie Pentru $a=0$ se obtine formula lui Maclaurin.
+  \observatie $T_{n, a} = f(a) + \frac{f'(a)}{1!} (x-a) + \frac{f''(a)}{2!} (x-a)^2 + \dots + \frac{f^{(n)}(a)}{n!} (x-a)^n$.
+\end{tcolorbox}
+\corolar Fie $P \in \mathbb{R}[X]$ cu $\deg P \leq n$. Atunci $P(X) = \sum_{k = 0}^{n} \frac{P^{(k)}(a)}{k!} (X-a)^k$.
+
+\teorema (Mertens) Fie $\sum_{n \geq 0} A_n$ si $\sum_{n \geq 0} B_n$ doua serii de numere complexe cu $\sum_{n \geq 0} A_n$ absolut convergenta si $\sum_{n \geq 0} B_n$ convergenta. Fie $C_n = A_0 B_n + A_1 B_{n-1} + \dots + A_n B_0 = \sum_{k=0}^{n} A_k B_{n-k}$. Atunci $\sum_{n \geq 0} C_n$ convergenta si $\sum_{n=0}^{\infty} C_n = \left( \sum_{n = 0}^{\infty} A_n \right) \cdot \left( \sum_{n = 0}^{\infty} B_n \right)$
+
+
+\end{enumerate}
+\end{document}

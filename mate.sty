@@ -1,0 +1,49 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{mate}[Format comun pentru lectii de matematica]
+
+\RequirePackage[utf8]{inputenc}
+\RequirePackage{amsmath, amsfonts, amsthm, amssymb}
+\RequirePackage{mathtools}
+\RequirePackage[a4paper]{geometry}
+\RequirePackage[shortlabels]{enumitem}
+\RequirePackage {extarrows}
+\RequirePackage{tcolorbox}
+
+
+\newcommand \definitie{ \item \textbf{\textit{Definitie}}. }
+\newcommand \notatie{ \item[] \textit{Notatie}. }
+\newcommand \observatie{ \item[] \textit{Observatie}. }
+\newcommand \proprietate{ \item[] \textbf{\textit{Proprietate}}. }
+\newcommand \exemplu{ \item[] \textit{Exemplu}. }
+\newcommand \propozitie{ \item \textbf{\textit{Propozitie}}. }
+\newcommand \corolar{ \item[] \textbf{\textit{Corolar}}. }
+\newcommand \teorema{ \item \textbf{\textit{Teorema}}. }
+\newcommand \demonstratie { \item[] \textit{Demonstratie}. }
+\newcommand \term [1] {{\textit{#1}}}
+
+\newcommand{\abs}[1]{\left\lvert #1 \right\rvert}
+\renewcommand{\arctan}{\operatorname{arctg}}
+\renewcommand{\sinh}{\operatorname{sh}}
+\renewcommand{\cosh}{\operatorname{ch}}
+\renewcommand{\deg}{\operatorname{grad}}
+
+\renewcommand{\geq}{\geqslant}
+\renewcommand{\leq}{\leqslant}
+
+\geometry{left=2cm, right=2cm, top=3cm, bottom=3cm, marginparwidth=4cm} 
+\everymath{\displaystyle}
+
+\tcbset{
+    width=\linewidth+3em,
+    enlarge left by=-3em,
+    left=3.0em,
+    right = 0.0em,
+    colback=black!5,
+    colframe=black,
+    boxrule=0.5pt,
+    arc=0mm
+}
+\setenumerate[1]{label=\thesection.\arabic*.}
+\setenumerate[2]{label=\arabic*)}
+\counterwithin*{equation}{section}
+\counterwithin*{equation}{subsection}
