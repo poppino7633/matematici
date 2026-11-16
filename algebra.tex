@@ -9,6 +9,8 @@
 
 \maketitle
 
+\newcommand{\colvec}[1]{\begin{bmatrix}#1\end{bmatrix}}
+
 \section{Spatii vectoriale}
 \begin{enumerate}
 
@@ -20,7 +22,41 @@
     \item $1_{\mathbb{K}} \cdot x = x, \forall x \in V$.
 
   \end{enumerate}
-  Elementele din $V$ se numesc \term{vectori}, iar elementele din $\mathbb{K}$ se numesc scalari.
+  Elementele din $V$ se numesc \term{vectori}, iar elementele din $\mathbb{K}$ se numesc \term{scalari}.
+  
+  \exemplu Orice corp comutativ $\mathbb{K}$ este si $\mathbb{K}-spatiu vectorial$.
+  \exemplu Daca $\mathbb{K}$ este corp comutativ si $n \in \mathbb{N}^*$, atunci $\mathbb{K}^n = \left\{ \colvec{x_1 \\ x_2 \\ \vdots \\ x_n} \middle\vert x_1, x_2, \dots, x_n \in \mathbb{K} \right\}$ este $\mathbb{K}$-spatiu vectorial, cu $\colvec{x_1 \\ x_2 \\ \vdots \\ x_n} + \colvec{y_1 \\ y_2 \\ \vdots \\ y_n} = \colvec{x_1 + y_1 \\ x_2 + y_2 \\ \vdots \\ x_n + y_n}$ si $\alpha \colvec{x_1 \\ x_2 \\ \vdots \\ x_n} = \colvec{\alpha x_1 \\ \alpha x_2 \\ \vdots \\ \alpha x_n}$.
+  
+  \exemplu $\mathbb{C}$ este spatiu vectorial real, dar si complex.
+  \exemplu $\mathcal{M}_{m, n}(\mathbb{K})$ este $\mathbb{K}$-spatiu vectorial.
+  \exemplu $\mathbb{K}_n [X] = \left\{ P \in \mathbb{K}[X] \middle\vert grad P \leq n \right\}$ este $\mathbb{K}$-spatiu vectorial.
+  
+  \exemplu $\widetilde{\mathbb{K}}_n [X] = \left\{ P \in \mathbb{K}[X] \middle\vert grad P = n \right\}$ NU este $\mathbb{K}$-spatiu vectorial, deoarece $grad(P + (-P)) = -\infty$, desi $P$ si $-P$ $\in \widetilde{\mathbb{K}}_n[X]$.
+
+  \proprietate Fie $(V, \mathbb{K}, +, \cdot)$ un $\mathbb{K}$-spatiu vectorial. Atunci:
+  \begin{enumerate}
+    \item $0_{\mathbb{K}} \cdot x = 0_V$.
+    \item $\alpha \cdot 0_V = 0_V$.
+    \item $\alpha \cdot x = 0_V \Leftrightarrow \alpha = 0_{\mathbb{K}} \text{ sau } x = 0_V$.
+    \item $(-1_{\mathbb{K}}) \cdot x = -x$
+  \end{enumerate}
+
+
+  \begin{tcolorbox}
+  \definitie Fie $(V, \mathbb{K}, +, \cdot)$ un $\mathbb{K}$-spatiu vectorial. 
+  \begin{enumerate}
+    \item Se numeste \term{combinatie liniara} a vectorilor \\ $v_1, v_2, \dots, v_n \in V$ expresia $\alpha_1 v_1 + \alpha_2 v_2 + \dots + \alpha_n v_n$, unde $\alpha_1, \alpha_2, \dots, \alpha_n \in \mathbb{K}$.
+
+  \item Se numeste \term{sistem de generatori} pentru $V$ o submultime $S \subseteq V$ cu proprietatea ca $\forall v \in V, \\ \exists v_1, v_2, \dots v_n \in S$ si $\alpha_1, \alpha_2, \dots, \alpha_n \in \mathbb{K}$ a.i $v = \alpha_1 v_1 + \alpha_2 v_2 + \dots + \alpha_n v_n$ (orice vector din $V$ este o combinatie liniara de vectori din $S$).
+
+  \item Se numeste \term{sistem liniar independent} o submultime $S = \{v_1, v_2, \dots, v_n\} \subseteq V$ cu proprietatea ca $\alpha_1 v_1 + \alpha_2 v_2 + \dots + \alpha_n v_n = 0_V \Rightarrow \alpha_1 = \alpha_2 = \dots = \alpha_n = 0_{\mathbb{K}}$ (niciun vector din $S$ nu poate fi combinatie liniara nenula de alti vectori).
+  \item Se numeste \term{sistem liniar dependent} o submultime $S \subseteq V$ care nu este sistem liniar independent (exista un vector in $S$ care poate fi combinatie liniara nenula de alti vectori din $S$).
+
+
+\end{enumerate}
+\end{tcolorbox}
+
+
 \end{enumerate}
 
 \end{document}
