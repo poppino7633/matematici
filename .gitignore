@@ -6,3 +6,4 @@
 !.github/workflows/build.yml
 !.githooks/pre-push
 !scripts/build-pdfs.sh
+/photos/

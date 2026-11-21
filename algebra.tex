@@ -24,7 +24,7 @@
   \end{enumerate}
   Elementele din $V$ se numesc \term{vectori}, iar elementele din $\mathbb{K}$ se numesc \term{scalari}.
   
-  \exemplu Orice corp comutativ $\mathbb{K}$ este si $\mathbb{K}-spatiu vectorial$.
+  \exemplu Orice corp comutativ $\mathbb{K}$ este si $\mathbb{K}$-spatiu vectorial.
   \exemplu Daca $\mathbb{K}$ este corp comutativ si $n \in \mathbb{N}^*$, atunci $\mathbb{K}^n = \left\{ \colvec{x_1 \\ x_2 \\ \vdots \\ x_n} \middle\vert x_1, x_2, \dots, x_n \in \mathbb{K} \right\}$ este $\mathbb{K}$-spatiu vectorial, cu $\colvec{x_1 \\ x_2 \\ \vdots \\ x_n} + \colvec{y_1 \\ y_2 \\ \vdots \\ y_n} = \colvec{x_1 + y_1 \\ x_2 + y_2 \\ \vdots \\ x_n + y_n}$ si $\alpha \colvec{x_1 \\ x_2 \\ \vdots \\ x_n} = \colvec{\alpha x_1 \\ \alpha x_2 \\ \vdots \\ \alpha x_n}$.
   
   \exemplu $\mathbb{C}$ este spatiu vectorial real, dar si complex.
@@ -47,15 +47,76 @@
   \begin{enumerate}
     \item Se numeste \term{combinatie liniara} a vectorilor \\ $v_1, v_2, \dots, v_n \in V$ expresia $\alpha_1 v_1 + \alpha_2 v_2 + \dots + \alpha_n v_n$, unde $\alpha_1, \alpha_2, \dots, \alpha_n \in \mathbb{K}$.
 
-  \item Se numeste \term{sistem de generatori} pentru $V$ o submultime $S \subseteq V$ cu proprietatea ca $\forall v \in V, \\ \exists v_1, v_2, \dots v_n \in S$ si $\alpha_1, \alpha_2, \dots, \alpha_n \in \mathbb{K}$ a.i $v = \alpha_1 v_1 + \alpha_2 v_2 + \dots + \alpha_n v_n$ (orice vector din $V$ este o combinatie liniara de vectori din $S$).
+  \item Se numeste \term{sistem de generatori} (sau SG) pentru $V$ o submultime $S \subseteq V$ cu proprietatea ca $\forall v \in V, \\ \exists v_1, v_2, \dots v_n \in S$ si $\alpha_1, \alpha_2, \dots, \alpha_n \in \mathbb{K}$ a.i $v = \alpha_1 v_1 + \alpha_2 v_2 + \dots + \alpha_n v_n$ (orice vector din $V$ este o combinatie liniara de vectori din $S$).
 
-  \item Se numeste \term{sistem liniar independent} o submultime $S = \{v_1, v_2, \dots, v_n\} \subseteq V$ cu proprietatea ca $\alpha_1 v_1 + \alpha_2 v_2 + \dots + \alpha_n v_n = 0_V \Rightarrow \alpha_1 = \alpha_2 = \dots = \alpha_n = 0_{\mathbb{K}}$ (niciun vector din $S$ nu poate fi combinatie liniara nenula de alti vectori).
-  \item Se numeste \term{sistem liniar dependent} o submultime $S \subseteq V$ care nu este sistem liniar independent (exista un vector in $S$ care poate fi combinatie liniara nenula de alti vectori din $S$).
+  \item Se numeste \term{sistem liniar independent} (sau SLI) o submultime $S = \{v_1, v_2, \dots, v_n\} \subseteq V$ cu proprietatea ca $\alpha_1 v_1 + \alpha_2 v_2 + \dots + \alpha_n v_n = 0_V \Rightarrow \alpha_1 = \alpha_2 = \dots = \alpha_n = 0_{\mathbb{K}}$ (niciun vector din $S$ nu poate fi combinatie liniara nenula de alti vectori din $S$).
+  \item Se numeste \term{sistem liniar dependent} (sau SLD) o submultime $S \subseteq V$ care nu este sistem liniar independent (exista un vector in $S$ care poate fi combinatie liniara nenula de alti vectori din $S$).
 
 
 \end{enumerate}
 \end{tcolorbox}
 
+\observatie Daca $S$ este SLI, atunci $0_V \notin S$.
+
+\propozitie Fie $(V, \mathbb{K}, +, \cdot)$ un $\mathbb{K}$-spatiu vectorial si $S \subseteq V$ un SLI. Atunci orice submultime a lui $S$ este SLI.
+
+\propozitie Fie $(V, \mathbb{K}, +, \cdot)$ un $\mathbb{K}$-spatiu vectorial si $S = \{v_1, v_2, \dots, v_n\}$ un SLD de vectori nenuli. Atunci $\exists j \in \{2, 3, \dots, n\}$ si $a_1, a_2, \dots, a_{j-1} \in \mathbb{K}$ a.i $v_j = \sum_{k=1}^{j-1} a_k v_k$. (Cel putin un vector poate fi combinatie liniara nenula a vectorilor dinaintea sa)
+
+\begin{tcolorbox}
+  \definitie Fie $(V, \mathbb{K}, +, \cdot)$ un $\mathbb{K}$-spatiu vectorial. Se numeste \term{baza} a lui $V$ o submultime $B \subseteq V$ care este SLI si SG (sistem de generatori) pentru $V$.
+  \teorema (Existenta bazei) Orice spatiu vectorial nenul finit generat are cel putin o baza.
+\end{tcolorbox}
+  \observatie Un spatiu vectorial este finit generat daca exista o multime finita care este SG pentru acel spatiu.
+  \exemplu Baza canonica a lui $\mathbb{R}^n = \mathcal{M}_{n, 1}(\mathbb{R})$ este formata din coloanele lui $I_n$.
+  \[
+    (Bc)_{\mathbb{R}^n} = \left\{
+      c_1 = \colvec{1 \\ 0 \\ \vdots \\ 0},
+      \dots,
+      c_n = \colvec{0 \\ 0 \\ \vdots \\ 1}
+    \right\}.
+  \]
+
+  \exemplu Baza canonica a lui $\mathcal{M}_{m, n}(\mathbb{R})$ este $\{E_{ij} \mid 1 \leq i \leq m,\ 1 \leq j \leq n\}$, unde $E_{ij} = [a_{k\ell}]_{m \times n}$ si
+  \[
+    a_{k\ell} =
+    \begin{cases}
+      1, & \text{daca } k = i \text{ si } \ell = j, \\
+      0, & \text{altfel}.
+    \end{cases}
+  \]
+  In particular,
+  \[
+    (Bc)_{\mathcal{M}_{2, 3}(\mathbb{R})} =
+    \left\{
+      \colvec{1 & 0 & 0 \\ 0 & 0 & 0},
+      \colvec{0 & 1 & 0 \\ 0 & 0 & 0},
+      \colvec{0 & 0 & 1 \\ 0 & 0 & 0},
+      \colvec{0 & 0 & 0 \\ 1 & 0 & 0},
+      \colvec{0 & 0 & 0 \\ 0 & 1 & 0},
+      \colvec{0 & 0 & 0 \\ 0 & 0 & 1}
+    \right\}.
+  \]
+  \exemplu $\{1, X, X^2, \dots, X^n\}$ este baza canonica pentru $\mathbb{R}_n[X]$.
+  \exemplu $\{1, i\}$ este o baza pentru $\mathbb{C}$ privit ca spatiu vectorial real.
+  \exemplu Daca $z_0 \in \mathbb{C}^*$, atunci $\{z_0\}$ este o baza pentru $\mathbb{C}$ privit ca spatiu vectorial complex.
+
+  \definitie Fie $(V, \mathbb{K}, +, \cdot)$ un $\mathbb{K}$-spatiu vectorial si $B = \{v_1, v_2, \dots, v_n\}$ o baza a lui $V$. Atunci $\forall v \in V$, $\exists \alpha_1, \alpha_2, \dots, \alpha_n \in \mathbb{K}$ a.i $v = \alpha_1 v_1 + \alpha_2 v_2 + \dots + \alpha_n v_n$. Scalarii $\alpha_1, \alpha_2, \dots, \alpha_n$ se numesc \term{coordonatele vectorului $v$ in baza $B$}, in ordinea $v_1, v_2, \dots, v_n$.
+
+  \notatie $[v]_B = \colvec{\alpha_1 \\ \alpha_2 \\ \vdots \\ \alpha_n}$.
+
+  \propozitie Fie $(V, \mathbb{K}, +, \cdot)$ un $\mathbb{K}$-spatiu vectorial finit generat si $B$ o baza a lui $V$. Atunci coordonatele oricarui vector $v \in V$ in baza $B$ sunt unice.
+
+  \lema (Schimbului) Fie $(V, \mathbb{K}, +, \cdot)$ un $\mathbb{K}$-spatiu vectorial nenul, $S = \{v_1, v_2, \dots, v_m\} \subseteq V \setminus \{0_V\}$ un SG pentru $V$ si $\{w_1, w_2, \dots, w_n\} \subseteq V$ un SLI. Atunci:
+  \begin{enumerate}
+    \item $n \leq m$.
+    \item Dupa o eventuala renumerotare a vectorilor din $S$, $\{w_1, w_2, \dots, w_n, v_{n+1}, \dots, v_m\}$ este un SG pentru $V$.
+  \end{enumerate}
+
+  \begin{tcolorbox}
+    \teorema (Cardinalul bazei) Intr-un spatiu vectorial nenul finit generat, toate bazele sunt finite si au acelasi numar de vectori. Acest numar se numeste \term{dimensiunea} spatiului vectorial si se noteaza $\dim_{\mathbb{K}} V$.
+  \end{tcolorbox}
+
+  \observatie $\dim_{\mathbb{R}} \mathbb{C} = 2$, iar $\dim_{\mathbb{C}} \mathbb{C} = 1$.
 
 \end{enumerate}
 
