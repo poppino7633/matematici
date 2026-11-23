@@ -11,6 +11,64 @@
 
 \newcommand{\colvec}[1]{\begin{bmatrix}#1\end{bmatrix}}
 
+\section{Matrice si sisteme liniare}
+\begin{enumerate}
+
+  \notatie Fie $A = [a_{ij}]_{m,n} \in \mathcal{M}_{m,n}(\mathbb{R})$. Notam cu $C_j$ coloana $j$ si cu $L_i$ linia $i$ ale lui $A$:
+  \[
+    C_j = \colvec{a_{1j} \\ a_{2j} \\ \vdots \\ a_{mj}},
+    \qquad L_i = \colvec{a_{i1} & a_{i2} & \dots & a_{in}}.
+  \]
+
+  \definitie O matrice este in \term{forma scara pe linii} daca:
+  \begin{enumerate}
+    \item Liniile nule sunt sub liniile nenule.
+    \item Fiecare linie nenula, incepand cu a doua, are mai multe zerouri la inceput decat linia precedenta.
+  \end{enumerate}
+
+  \exemplu Urmatoarele matrice sunt in forma scara pe linii:
+  \[
+    \colvec{0 & 1 & 0 & 1 \\ 0 & 0 & 0 & 2}, \qquad
+    \colvec{1 & 1 \\ 0 & 0 \\ 0 & 0}, \qquad
+    \colvec{0 & 0 & 0 & 1 \\ 0 & 0 & 0 & 0}, \qquad
+    \colvec{1 & 1 & 0 & 1 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1}.
+  \]
+  Matricele $\colvec{0 \\ 1}$ si $\colvec{1 \\ 2 \\ 0}$ nu sunt in forma scara pe linii.
+
+  \definitie Intr-o matrice in forma scara pe linii, primul element nenul de la stanga al fiecarei linii nenule se numeste \term{pivot}.
+
+  \begin{tcolorbox}
+    \definitie Se numesc \term{transformari elementare pe linii} urmatoarele operatii:
+    \begin{enumerate}
+      \item Adunarea la o linie a unui multiplu al altei linii.
+      \item Inmultirea unei linii cu un scalar nenul.
+      \item Permutarea a doua linii.
+    \end{enumerate}
+  \end{tcolorbox}
+
+  \observatie Orice matrice se poate aduce la forma scara pe linii prin transformari elementare pe linii.
+
+  \definitie Fie $A \in \mathcal{M}_{m,n}(\mathbb{R})$ si $r \in \mathbb{N}^*$ cu $r \leq \min\{m,n\}$. Se numeste \term{minor de ordin $r$} al matricei $A$ determinantul unei submatrice formate din $r$ linii si $r$ coloane ale lui $A$. Matricea $A$ are \term{rangul} $r$ daca are un minor nenul de ordin $r$, iar toti minorii de ordin mai mare sunt nuli.
+
+  \observatie Prin conventie, $\rang 0_{m,n} = 0$. Rangul unei matrice ramane neschimbat prin transformari elementare pe linii.
+
+  \corolar Fie $A \in \mathcal{M}_{m,n}(\mathbb{R})$ si $U$ o forma scara pe linii a lui $A$. Atunci $\rang A = \rang U$, iar acest rang este egal cu numarul liniilor nenule ale lui $U$, adica numarul pivotilor lui $U$.
+
+  \observatie Rangul unei matrice este numarul maxim de linii liniar independente si, de asemenea, numarul maxim de coloane liniar independente.
+
+  \begin{tcolorbox}
+    \teorema (Kronecker--Capelli) Fie sistemul liniar $Ax = b$, unde $A \in \mathcal{M}_{m,n}(\mathbb{R})$, $x \in \mathbb{R}^n$ si $b \in \mathbb{R}^m$. Sistemul este compatibil daca si numai daca $\rang A = \rang \overline{A}$, unde $\overline{A} = [A \mid b]$.
+  \end{tcolorbox}
+
+  \begin{tcolorbox}
+    \observatie (Algoritmul Gauss--Jordan) Fie $A \in \mathcal{M}_n(\mathbb{R})$ cu $\det A \neq 0$. Daca $e_k$ este coloana $k$ a lui $I_n$, atunci solutia sistemului $Ax = e_k$ este coloana $k$ a lui $A^{-1}$. Pentru a calcula inversa, se aplica transformari elementare pe linii matricei $[A \mid I_n]$ pana cand blocul din stanga devine $I_n$. Blocul din dreapta este atunci $A^{-1}$:
+    \[
+      [A \mid I_n] \longrightarrow [I_n \mid A^{-1}].
+    \]
+  \end{tcolorbox}
+
+\end{enumerate}
+
 \section{Spatii vectoriale}
 \begin{enumerate}
 
@@ -58,7 +116,7 @@
 
 \observatie Daca $S$ este SLI, atunci $0_V \notin S$.
 
-\propozitie Fie $(V, \mathbb{K}, +, \cdot)$ un $\mathbb{K}$-spatiu vectorial si $S \subseteq V$ un SLI. Atunci orice submultime a lui $S$ este SLI.
+\proprietate Fie $(V, \mathbb{K}, +, \cdot)$ un $\mathbb{K}$-spatiu vectorial si $S \subseteq V$ un SLI. Atunci orice submultime a lui $S$ este SLI.
 
 \propozitie Fie $(V, \mathbb{K}, +, \cdot)$ un $\mathbb{K}$-spatiu vectorial si $S = \{v_1, v_2, \dots, v_n\}$ un SLD de vectori nenuli. Atunci $\exists j \in \{2, 3, \dots, n\}$ si $a_1, a_2, \dots, a_{j-1} \in \mathbb{K}$ a.i $v_j = \sum_{k=1}^{j-1} a_k v_k$. (Cel putin un vector poate fi combinatie liniara nenula a vectorilor dinaintea sa)
 
@@ -104,7 +162,7 @@
 
   \notatie $[v]_B = \colvec{\alpha_1 \\ \alpha_2 \\ \vdots \\ \alpha_n}$.
 
-  \propozitie Fie $(V, \mathbb{K}, +, \cdot)$ un $\mathbb{K}$-spatiu vectorial finit generat si $B$ o baza a lui $V$. Atunci coordonatele oricarui vector $v \in V$ in baza $B$ sunt unice.
+  \proprietate Fie $(V, \mathbb{K}, +, \cdot)$ un $\mathbb{K}$-spatiu vectorial finit generat si $B$ o baza a lui $V$. Atunci coordonatele oricarui vector $v \in V$ in baza $B$ sunt unice.
 
   \lema (Schimbului) Fie $(V, \mathbb{K}, +, \cdot)$ un $\mathbb{K}$-spatiu vectorial nenul, $S = \{v_1, v_2, \dots, v_m\} \subseteq V \setminus \{0_V\}$ un SG pentru $V$ si $\{w_1, w_2, \dots, w_n\} \subseteq V$ un SLI. Atunci:
   \begin{enumerate}
@@ -117,6 +175,135 @@
   \end{tcolorbox}
 
   \observatie $\dim_{\mathbb{R}} \mathbb{C} = 2$, iar $\dim_{\mathbb{C}} \mathbb{C} = 1$.
+
+  \observatie Prin conventie, $\dim_{\mathbb{K}} V = 0$ daca $V = \{0_V\}$.
+
+  \corolar Fie $V$ un $\mathbb{K}$-spatiu vectorial cu $\dim_{\mathbb{K}} V = n \in \mathbb{N}^*$. Atunci:
+  \begin{enumerate}
+    \item Orice sistem de $m > n$ vectori din $V$ este SLD.
+    \item Un sistem $B$ de $n$ vectori din $V$ este baza a lui $V$ daca si numai daca este SLI.
+    \item Un sistem $B$ de $n$ vectori din $V$ este baza a lui $V$ daca si numai daca este SG pentru $V$.
+    \item Niciun sistem de $m < n$ vectori din $V$ nu este SG pentru $V$.
+  \end{enumerate}
+
+\end{enumerate}
+
+\section{Subspatii vectoriale}
+\begin{enumerate}
+
+  \definitie Fie $(V, \mathbb{K}, +, \cdot)$ un $\mathbb{K}$-spatiu vectorial si $W \subseteq V$. Se numeste \term{subspatiu vectorial} al lui $V$ o submultime $W$ pentru care $(W, \mathbb{K}, +, \cdot)$ este un $\mathbb{K}$-spatiu vectorial cu operatiile din $V$.
+
+  \propozitie Fie $V$ un $\mathbb{K}$-spatiu vectorial si $\varnothing \neq W \subseteq V$. Atunci urmatoarele afirmatii sunt echivalente:
+  \begin{enumerate}
+    \item $W$ este subspatiu vectorial al lui $V$.
+    \item $w_1 + w_2 \in W$, $\forall w_1, w_2 \in W$, si $\alpha w \in W$, $\forall \alpha \in \mathbb{K}, w \in W$.
+    \item $\alpha w_1 + \beta w_2 \in W$, $\forall \alpha, \beta \in \mathbb{K}, w_1, w_2 \in W$.
+  \end{enumerate}
+
+  \propozitie Fie $V$ un $\mathbb{K}$-spatiu vectorial finit dimensional. Atunci:
+  \begin{enumerate}
+    \item Pentru orice subspatiu vectorial $W$ al lui $V$, $\dim_{\mathbb{K}} W \leq \dim_{\mathbb{K}} V$.
+    \item Daca $W_1, W_2$ sunt subspatii vectoriale ale lui $V$ si $W_1 \subseteq W_2$, atunci $\dim_{\mathbb{K}} W_1 \leq \dim_{\mathbb{K}} W_2 \leq \dim_{\mathbb{K}} V$.
+    \item Daca $W_1, W_2$ sunt subspatii vectoriale ale lui $V$, $W_1 \subseteq W_2$ si $\dim_{\mathbb{K}} W_1 = \dim_{\mathbb{K}} W_2$, atunci $W_1 = W_2$.
+  \end{enumerate}
+
+  \definitie Fie $V$ un $\mathbb{K}$-spatiu vectorial si $\{v_1, v_2, \dots, v_m\} \subseteq V \setminus \{0_V\}$. Se numeste \term{spatiul generat} de vectorii $v_1, v_2, \dots, v_m$ subspatiul vectorial
+  \[
+    \operatorname{Sp}\{v_1, v_2, \dots, v_m\}
+    = \left\{\sum_{i=1}^m \alpha_i v_i \,\middle\vert\, \alpha_1, \alpha_2, \dots, \alpha_m \in \mathbb{K}\right\}.
+  \]
+
+  \definitie Fie $\mathbb{K}$ un corp comutativ si $A \in \mathcal{M}_{m, n}(\mathbb{K})$. Se numesc \term{nucleul} si \term{imaginea} matricei $A$ multimile
+  \begin{align*}
+    \Ker(A) &= \{x \in \mathbb{K}^n \mid Ax = 0_{\mathbb{K}^m}\}, \\
+    \operatorname{Im} A &= \{Ax \mid x \in \mathbb{K}^n\}.
+  \end{align*}
+  Nucleul este subspatiu vectorial al lui $\mathbb{K}^n$, iar imaginea este subspatiu vectorial al lui $\mathbb{K}^m$.
+
+\begin{tcolorbox}
+  \teorema Fie $V$ un $\mathbb{K}$-spatiu vectorial cu $\dim_{\mathbb{K}} V = m \in \mathbb{N}^*$, $B$ o baza a lui $V$ si $v_1, v_2, \dots, v_n \in V$, nu toti nuli. Fie $A = [a_{ij}]_{m, n}$ matricea ale carei coloane sunt coordonatele vectorilor $v_j$ in baza $B$. Atunci:
+  \begin{enumerate}
+    \item Pentru $x_1, x_2, \dots, x_n \in \mathbb{K}$,
+    \[
+      x_1 v_1 + x_2 v_2 + \dots + x_n v_n = 0_V
+      \quad\Leftrightarrow\quad
+      A \colvec{x_1 \\ x_2 \\ \vdots \\ x_n} = 0_{\mathbb{K}^m}.
+    \]
+    \item Sistemul de vectori $v_1, v_2, \dots, v_n$ este SLI daca si numai daca sistemul omogen de mai sus are ca unica solutie solutia nula, adica $\operatorname{rang} A = n$.
+    \item Fie $r = \operatorname{rang} A$. Dupa o eventuala renumerotare a vectorilor si permutarea corespunzatoare a coloanelor, transformarile elementare pe linii aduc matricea la forma
+    \[
+      \colvec{I_r & C \\ 0 & 0},
+      \qquad C = [b_{ij}]_{\substack{1 \leq i \leq r \\ r+1 \leq j \leq n}}.
+    \]
+    Coloanele blocului $I_r$ corespund vectorilor $v_1, v_2, \dots, v_r$, care formeaza baza. Pentru $r < j \leq n$, coloana corespunzatoare din $C$ contine coordonatele lui $v_j$ in aceasta baza:
+    \[
+      v_j = \sum_{i=1}^r b_{ij}v_i.
+    \]
+  \end{enumerate}
+\end{tcolorbox}
+
+  \propozitie Fie $V$ un $\mathbb{K}$-spatiu vectorial si $W_1, W_2$ subspatii vectoriale ale lui $V$. Atunci intersectia si suma lor,
+  \begin{align*}
+    W_1 \cap W_2 &= \{w \in V \mid w \in W_1 \text{ si } w \in W_2\}, \\
+    W_1 + W_2 &= \{w_1 + w_2 \mid w_1 \in W_1,\ w_2 \in W_2\},
+  \end{align*}
+  sunt subspatii vectoriale ale lui $V$.
+
+  \observatie Daca $W_1 = \operatorname{Sp}\{v_1, \dots, v_m\}$ si $W_2 = \operatorname{Sp}\{w_1, \dots, w_p\}$, atunci
+  \[
+    W_1 + W_2 = \operatorname{Sp}\{v_1, \dots, v_m, w_1, \dots, w_p\}.
+  \]
+
+  \propozitie Fie $V$ un $\mathbb{K}$-spatiu vectorial si $W_1, W_2$ subspatii vectoriale ale lui $V$. Atunci $W_1 \cup W_2$ este subspatiu vectorial al lui $V$ daca si numai daca $W_1 \subseteq W_2$ sau $W_2 \subseteq W_1$.
+
+  \definitie Fie $V$ un $\mathbb{K}$-spatiu vectorial si $W_1, W_2$ subspatii vectoriale ale lui $V$. Suma $W_1 + W_2$ se numeste \term{suma directa} si se noteaza $W_1 \oplus W_2$ daca $W_1 \cap W_2 = \{0_V\}$.
+
+  \proprietate Fie $V$ un $\mathbb{K}$-spatiu vectorial si $W_1, W_2$ subspatii vectoriale ale lui $V$. Suma $W_1 + W_2$ este directa daca si numai daca orice $v \in W_1 + W_2$ se scrie in mod unic sub forma $v = w_1 + w_2$, cu $w_1 \in W_1$ si $w_2 \in W_2$.
+
+  \begin{tcolorbox}
+    \teorema (Grassmann) Fie $V$ un $\mathbb{K}$-spatiu vectorial nenul finit dimensional si $U, W$ doua subspatii vectoriale nenule ale lui $V$. Atunci
+    \[
+      \dim_{\mathbb{K}} U + \dim_{\mathbb{K}} W
+      = \dim_{\mathbb{K}}(U + W) + \dim_{\mathbb{K}}(U \cap W).
+    \]
+  \end{tcolorbox}
+
+\end{enumerate}
+
+\section{Aplicatii liniare}
+\begin{enumerate}
+
+  \definitie Fie $V_1, V_2$ doua $\mathbb{K}$-spatii vectoriale si $f : V_1 \to V_2$ o functie. Se numeste \term{aplicatie liniara} (sau $\mathbb{K}$-liniara) daca
+  \[
+    f(\alpha x + \beta y) = \alpha f(x) + \beta f(y),
+    \qquad \forall \alpha, \beta \in \mathbb{K},\ x, y \in V_1.
+  \]
+
+  \observatie Daca $V_1 = V_2$ si $f$ este aplicatie liniara, atunci $f$ se numeste \term{endomorfism}.
+
+  \observatie Daca $f : V_1 \to V_2$ este aplicatie liniara, atunci $f(0_{V_1}) = 0_{V_2}$.
+
+  \definitie O aplicatie liniara bijectiva $f : V_1 \to V_2$ se numeste \term{izomorfism de spatii vectoriale}.
+
+  \proprietate Daca $f : V_1 \to V_2$ este izomorfism, atunci $f^{-1} : V_2 \to V_1$ este izomorfism.
+
+  \proprietate Fie $V_1, V_2, V_3$ trei $\mathbb{K}$-spatii vectoriale. Daca $f : V_1 \to V_2$ si $g : V_2 \to V_3$ sunt izomorfisme, atunci $g \circ f : V_1 \to V_3$ este izomorfism.
+
+  \observatie Un izomorfism $f : V_1 \to V_1$ se numeste \term{automorfism}.
+
+  \notatie Scriem $V \simeq W$ daca exista un izomorfism intre spatiile vectoriale $V$ si $W$.
+
+  \begin{tcolorbox}
+    \teorema (Izomorfism)
+    \begin{enumerate}
+      \item Daca $V$ este un $\mathbb{K}$-spatiu vectorial cu $\dim_{\mathbb{K}} V = m \in \mathbb{N}^*$, atunci $V \simeq \mathbb{K}^m$.
+      \item Daca $V_1, V_2$ sunt doua $\mathbb{K}$-spatii vectoriale finit dimensionale, atunci
+      \[
+        V_1 \simeq V_2 \quad\Leftrightarrow\quad
+        \dim_{\mathbb{K}} V_1 = \dim_{\mathbb{K}} V_2.
+      \]
+    \end{enumerate}
+  \end{tcolorbox}
 
 \end{enumerate}
 
