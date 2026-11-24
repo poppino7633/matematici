@@ -213,13 +213,6 @@
     = \left\{\sum_{i=1}^m \alpha_i v_i \,\middle\vert\, \alpha_1, \alpha_2, \dots, \alpha_m \in \mathbb{K}\right\}.
   \]
 
-  \definitie Fie $\mathbb{K}$ un corp comutativ si $A \in \mathcal{M}_{m, n}(\mathbb{K})$. Se numesc \term{nucleul} si \term{imaginea} matricei $A$ multimile
-  \begin{align*}
-    \Ker(A) &= \{x \in \mathbb{K}^n \mid Ax = 0_{\mathbb{K}^m}\}, \\
-    \operatorname{Im} A &= \{Ax \mid x \in \mathbb{K}^n\}.
-  \end{align*}
-  Nucleul este subspatiu vectorial al lui $\mathbb{K}^n$, iar imaginea este subspatiu vectorial al lui $\mathbb{K}^m$.
-
 \begin{tcolorbox}
   \teorema Fie $V$ un $\mathbb{K}$-spatiu vectorial cu $\dim_{\mathbb{K}} V = m \in \mathbb{N}^*$, $B$ o baza a lui $V$ si $v_1, v_2, \dots, v_n \in V$, nu toti nuli. Fie $A = [a_{ij}]_{m, n}$ matricea ale carei coloane sunt coordonatele vectorilor $v_j$ in baza $B$. Atunci:
   \begin{enumerate}
@@ -304,6 +297,29 @@
       \]
     \end{enumerate}
   \end{tcolorbox}
+
+  \definitie Fie $f : V_1 \to V_2$ o aplicatie liniara intre doua $\mathbb{K}$-spatii vectoriale. Se numesc \term{nucleul} si \term{imaginea} lui $f$ multimile
+  \begin{align*}
+    \Ker f &= \{x \in V_1 \mid f(x) = 0_{V_2}\}, \\
+    \im f &= \{f(x) \mid x \in V_1\}.
+  \end{align*}
+
+  \proprietate $\Ker f$ este subspatiu vectorial al lui $V_1$, iar $\im f$ este subspatiu vectorial al lui $V_2$.
+
+  \proprietate Aplicatia $f$ este injectiva daca si numai daca $\Ker f = \{0_{V_1}\}$.
+
+  \proprietate Aplicatia $f$ este surjectiva daca si numai daca $\im f = V_2$.
+
+  \observatie Pentru $A \in \mathcal{M}_{m, n}(\mathbb{K})$, nucleul $\Ker(A)$ si imaginea $\im A$ ale matricei sunt nucleul si imaginea aplicatiei liniare $x \mapsto Ax$ de la $\mathbb{K}^n$ la $\mathbb{K}^m$.
+
+  \begin{tcolorbox}
+    \teorema (Rang--defect) Fie $f : V_1 \to V_2$ o aplicatie liniara intre doua $\mathbb{K}$-spatii vectoriale, cu $V_1$ nenul si finit dimensional. Atunci
+    \[
+      \dim_{\mathbb{K}} V_1 = \dim_{\mathbb{K}} \Ker f + \dim_{\mathbb{K}} \im f.
+    \]
+  \end{tcolorbox}
+
+  \observatie $\dim_{\mathbb{K}} \im f$ se numeste \term{rangul} lui $f$, iar $\dim_{\mathbb{K}} \Ker f$ se numeste \term{defectul} lui $f$.
 
 \end{enumerate}
 
