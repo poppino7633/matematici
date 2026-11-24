@@ -37,6 +37,8 @@
 
   \definitie Intr-o matrice in forma scara pe linii, primul element nenul de la stanga al fiecarei linii nenule se numeste \term{pivot}.
 
+  \definitie O matrice este in \term{forma scara redusa} daca este in forma scara pe linii, fiecare pivot este egal cu $1$, iar toate celelalte elemente din coloana lui sunt nule.
+
   \begin{tcolorbox}
     \definitie Se numesc \term{transformari elementare pe linii} urmatoarele operatii:
     \begin{enumerate}
@@ -60,8 +62,12 @@
     \teorema (Kronecker--Capelli) Fie sistemul liniar $Ax = b$, unde $A \in \mathcal{M}_{m,n}(\mathbb{R})$, $x \in \mathbb{R}^n$ si $b \in \mathbb{R}^m$. Sistemul este compatibil daca si numai daca $\rang A = \rang \overline{A}$, unde $\overline{A} = [A \mid b]$.
   \end{tcolorbox}
 
+  \propozitie Daca $x_0$ este o solutie particulara a sistemului $Ax=b$, atunci multimea solutiilor sale este $\{x_0+y \mid Ay=0\}$.
+
   \begin{tcolorbox}
-    \observatie (Algoritmul Gauss--Jordan) Fie $A \in \mathcal{M}_n(\mathbb{R})$ cu $\det A \neq 0$. Daca $e_k$ este coloana $k$ a lui $I_n$, atunci solutia sistemului $Ax = e_k$ este coloana $k$ a lui $A^{-1}$. Pentru a calcula inversa, se aplica transformari elementare pe linii matricei $[A \mid I_n]$ pana cand blocul din stanga devine $I_n$. Blocul din dreapta este atunci $A^{-1}$:
+    \observatie (Algoritmul Gauss--Jordan) Pentru a rezolva sistemul $Ax=b$, se aplica transformari elementare pe linii matricei extinse $[A \mid b]$, pastrand multimea solutiilor. In forma scara redusa, o linie cu coeficienti nuli si termen liber nenul indica incompatibilitatea. Pentru un sistem compatibil, necunoscutele din coloanele fara pivot sunt libere, iar cele din coloanele cu pivot se exprima in functie de acestea.
+
+    Fie $A \in \mathcal{M}_n(\mathbb{R})$ cu $\det A \neq 0$. Daca $e_k$ este coloana $k$ a lui $I_n$, atunci solutia sistemului $Ax = e_k$ este coloana $k$ a lui $A^{-1}$. Pentru a calcula inversa, se aplica transformari elementare pe linii matricei $[A \mid I_n]$ pana cand blocul din stanga devine $I_n$. Blocul din dreapta este atunci $A^{-1}$:
     \[
       [A \mid I_n] \longrightarrow [I_n \mid A^{-1}].
     \]
@@ -87,17 +93,19 @@
   
   \exemplu $\mathbb{C}$ este spatiu vectorial real, dar si complex.
   \exemplu $\mathcal{M}_{m, n}(\mathbb{K})$ este $\mathbb{K}$-spatiu vectorial.
-  \exemplu $\mathbb{K}_n [X] = \left\{ P \in \mathbb{K}[X] \middle\vert grad P \leq n \right\}$ este $\mathbb{K}$-spatiu vectorial.
+  \exemplu $\mathbb{K}_n [X] = \left\{ P \in \mathbb{K}[X] \middle\vert \deg P \leq n \right\}$ este $\mathbb{K}$-spatiu vectorial.
   
-  \exemplu $\widetilde{\mathbb{K}}_n [X] = \left\{ P \in \mathbb{K}[X] \middle\vert grad P = n \right\}$ NU este $\mathbb{K}$-spatiu vectorial, deoarece $grad(P + (-P)) = -\infty$, desi $P$ si $-P$ $\in \widetilde{\mathbb{K}}_n[X]$.
+  \exemplu $\widetilde{\mathbb{K}}_n [X] = \left\{ P \in \mathbb{K}[X] \middle\vert \deg P = n \right\}$ NU este $\mathbb{K}$-spatiu vectorial, deoarece $\deg(P + (-P)) = -\infty$, desi $P$ si $-P$ $\in \widetilde{\mathbb{K}}_n[X]$.
 
-  \proprietate Fie $(V, \mathbb{K}, +, \cdot)$ un $\mathbb{K}$-spatiu vectorial. Atunci:
-  \begin{enumerate}
-    \item $0_{\mathbb{K}} \cdot x = 0_V$.
-    \item $\alpha \cdot 0_V = 0_V$.
-    \item $\alpha \cdot x = 0_V \Leftrightarrow \alpha = 0_{\mathbb{K}} \text{ sau } x = 0_V$.
-    \item $(-1_{\mathbb{K}}) \cdot x = -x$
-  \end{enumerate}
+  \begin{samepage}
+    \proprietate Fie $(V, \mathbb{K}, +, \cdot)$ un $\mathbb{K}$-spatiu vectorial. Atunci:
+    \begin{enumerate}
+      \item $0_{\mathbb{K}} \cdot x = 0_V$.
+      \item $\alpha \cdot 0_V = 0_V$.
+      \item $\alpha \cdot x = 0_V \Leftrightarrow \alpha = 0_{\mathbb{K}} \text{ sau } x = 0_V$.
+      \item $(-1_{\mathbb{K}}) \cdot x = -x$
+    \end{enumerate}
+  \end{samepage}
 
 
   \begin{tcolorbox}
@@ -108,13 +116,13 @@
   \item Se numeste \term{sistem de generatori} (sau SG) pentru $V$ o submultime $S \subseteq V$ cu proprietatea ca $\forall v \in V, \\ \exists v_1, v_2, \dots v_n \in S$ si $\alpha_1, \alpha_2, \dots, \alpha_n \in \mathbb{K}$ a.i $v = \alpha_1 v_1 + \alpha_2 v_2 + \dots + \alpha_n v_n$ (orice vector din $V$ este o combinatie liniara de vectori din $S$).
 
   \item Se numeste \term{sistem liniar independent} (sau SLI) o submultime $S = \{v_1, v_2, \dots, v_n\} \subseteq V$ cu proprietatea ca $\alpha_1 v_1 + \alpha_2 v_2 + \dots + \alpha_n v_n = 0_V \Rightarrow \alpha_1 = \alpha_2 = \dots = \alpha_n = 0_{\mathbb{K}}$ (niciun vector din $S$ nu poate fi combinatie liniara nenula de alti vectori din $S$).
-  \item Se numeste \term{sistem liniar dependent} (sau SLD) o submultime $S \subseteq V$ care nu este sistem liniar independent (exista un vector in $S$ care poate fi combinatie liniara nenula de alti vectori din $S$).
+  \item Se numeste \term{sistem liniar dependent} (sau SLD) o submultime $S \subseteq V$ care nu este sistem liniar independent. Intr-un SLD, cel putin un vector se poate scrie ca o combinatie liniara a celorlalti.
 
 
 \end{enumerate}
 \end{tcolorbox}
 
-\observatie Daca $S$ este SLI, atunci $0_V \notin S$.
+\proprietate Sistemul $\{v\}$ este SLI daca si numai daca $v \neq 0_V$. In particular, daca $S$ este SLI, atunci $0_V \notin S$.
 
 \proprietate Fie $(V, \mathbb{K}, +, \cdot)$ un $\mathbb{K}$-spatiu vectorial si $S \subseteq V$ un SLI. Atunci orice submultime a lui $S$ este SLI.
 
@@ -122,19 +130,19 @@
 
 \begin{tcolorbox}
   \definitie Fie $(V, \mathbb{K}, +, \cdot)$ un $\mathbb{K}$-spatiu vectorial. Se numeste \term{baza} a lui $V$ o submultime $B \subseteq V$ care este SLI si SG (sistem de generatori) pentru $V$.
-  \teorema (Existenta bazei) Orice spatiu vectorial nenul finit generat are cel putin o baza.
+  \teorema (Existenta bazei) Din orice sistem de generatori al unui spatiu vectorial nenul finit generat se poate extrage o baza.
 \end{tcolorbox}
-  \observatie Un spatiu vectorial este finit generat daca exista o multime finita care este SG pentru acel spatiu.
-  \exemplu Baza canonica a lui $\mathbb{R}^n = \mathcal{M}_{n, 1}(\mathbb{R})$ este formata din coloanele lui $I_n$.
+  \observatie Un spatiu vectorial este \term{finit generat} daca admite un sistem finit de generatori. In caz contrar, este \term{infinit generat}.
+  \exemplu Baza canonica a lui $\mathbb{K}^n = \mathcal{M}_{n, 1}(\mathbb{K})$ este formata din coloanele lui $I_n$.
   \[
-    (Bc)_{\mathbb{R}^n} = \left\{
+    (Bc)_{\mathbb{K}^n} = \left\{
       c_1 = \colvec{1 \\ 0 \\ \vdots \\ 0},
       \dots,
       c_n = \colvec{0 \\ 0 \\ \vdots \\ 1}
     \right\}.
   \]
 
-  \exemplu Baza canonica a lui $\mathcal{M}_{m, n}(\mathbb{R})$ este $\{E_{ij} \mid 1 \leq i \leq m,\ 1 \leq j \leq n\}$, unde $E_{ij} = [a_{k\ell}]_{m \times n}$ si
+  \exemplu Baza canonica a lui $\mathcal{M}_{m, n}(\mathbb{K})$ este $\{E_{ij} \mid 1 \leq i \leq m,\ 1 \leq j \leq n\}$, unde $E_{ij} = [a_{k\ell}]_{m \times n}$ si
   \[
     a_{k\ell} =
     \begin{cases}
@@ -154,7 +162,7 @@
       \colvec{0 & 0 & 0 \\ 0 & 0 & 1}
     \right\}.
   \]
-  \exemplu $\{1, X, X^2, \dots, X^n\}$ este baza canonica pentru $\mathbb{R}_n[X]$.
+  \exemplu $\{1, X, X^2, \dots, X^n\}$ este baza canonica pentru $\mathbb{K}_n[X]$.
   \exemplu $\{1, i\}$ este o baza pentru $\mathbb{C}$ privit ca spatiu vectorial real.
   \exemplu Daca $z_0 \in \mathbb{C}^*$, atunci $\{z_0\}$ este o baza pentru $\mathbb{C}$ privit ca spatiu vectorial complex.
 
@@ -176,6 +184,8 @@
 
   \observatie $\dim_{\mathbb{R}} \mathbb{C} = 2$, iar $\dim_{\mathbb{C}} \mathbb{C} = 1$.
 
+  \observatie Bazele canonice dau $\dim_{\mathbb K}\mathbb K^n=n$, $\dim_{\mathbb K}\mathcal M_{m,n}(\mathbb K)=mn$ si $\dim_{\mathbb K}\mathbb K_n[X]=n+1$.
+
   \observatie Prin conventie, $\dim_{\mathbb{K}} V = 0$ daca $V = \{0_V\}$.
 
   \corolar Fie $V$ un $\mathbb{K}$-spatiu vectorial cu $\dim_{\mathbb{K}} V = n \in \mathbb{N}^*$. Atunci:
@@ -193,6 +203,8 @@
 
   \definitie Fie $(V, \mathbb{K}, +, \cdot)$ un $\mathbb{K}$-spatiu vectorial si $W \subseteq V$. Se numeste \term{subspatiu vectorial} al lui $V$ o submultime $W$ pentru care $(W, \mathbb{K}, +, \cdot)$ este un $\mathbb{K}$-spatiu vectorial cu operatiile din $V$.
 
+  \proprietate Orice subspatiu vectorial al lui $V$ contine vectorul nul $0_V$.
+
   \propozitie Fie $V$ un $\mathbb{K}$-spatiu vectorial si $\varnothing \neq W \subseteq V$. Atunci urmatoarele afirmatii sunt echivalente:
   \begin{enumerate}
     \item $W$ este subspatiu vectorial al lui $V$.
@@ -200,16 +212,18 @@
     \item $\alpha w_1 + \beta w_2 \in W$, $\forall \alpha, \beta \in \mathbb{K}, w_1, w_2 \in W$.
   \end{enumerate}
 
-  \propozitie Fie $V$ un $\mathbb{K}$-spatiu vectorial finit dimensional. Atunci:
-  \begin{enumerate}
-    \item Pentru orice subspatiu vectorial $W$ al lui $V$, $\dim_{\mathbb{K}} W \leq \dim_{\mathbb{K}} V$.
-    \item Daca $W_1, W_2$ sunt subspatii vectoriale ale lui $V$ si $W_1 \subseteq W_2$, atunci $\dim_{\mathbb{K}} W_1 \leq \dim_{\mathbb{K}} W_2 \leq \dim_{\mathbb{K}} V$.
-    \item Daca $W_1, W_2$ sunt subspatii vectoriale ale lui $V$, $W_1 \subseteq W_2$ si $\dim_{\mathbb{K}} W_1 = \dim_{\mathbb{K}} W_2$, atunci $W_1 = W_2$.
-  \end{enumerate}
+  \begin{samepage}
+    \propozitie Fie $V$ un $\mathbb{K}$-spatiu vectorial finit dimensional. Atunci:
+    \begin{enumerate}
+      \item Pentru orice subspatiu vectorial $W$ al lui $V$, $\dim_{\mathbb{K}} W \leq \dim_{\mathbb{K}} V$.
+      \item Daca $W_1, W_2$ sunt subspatii vectoriale ale lui $V$ si $W_1 \subseteq W_2$, atunci $\dim_{\mathbb{K}} W_1 \leq \dim_{\mathbb{K}} W_2 \leq \dim_{\mathbb{K}} V$.
+      \item Daca $W_1, W_2$ sunt subspatii vectoriale ale lui $V$, $W_1 \subseteq W_2$ si $\dim_{\mathbb{K}} W_1 = \dim_{\mathbb{K}} W_2$, atunci $W_1 = W_2$.
+    \end{enumerate}
+  \end{samepage}
 
-  \definitie Fie $V$ un $\mathbb{K}$-spatiu vectorial si $\{v_1, v_2, \dots, v_m\} \subseteq V \setminus \{0_V\}$. Se numeste \term{spatiul generat} de vectorii $v_1, v_2, \dots, v_m$ subspatiul vectorial
+  \definitie Fie $V$ un $\mathbb{K}$-spatiu vectorial si $v_1, v_2, \dots, v_m \in V$. Se numeste \term{spatiul generat} de vectorii $v_1, v_2, \dots, v_m$ subspatiul vectorial
   \[
-    \operatorname{Sp}\{v_1, v_2, \dots, v_m\}
+    \Sp\{v_1, v_2, \dots, v_m\}
     = \left\{\sum_{i=1}^m \alpha_i v_i \,\middle\vert\, \alpha_1, \alpha_2, \dots, \alpha_m \in \mathbb{K}\right\}.
   \]
 
@@ -222,13 +236,14 @@
       \quad\Leftrightarrow\quad
       A \colvec{x_1 \\ x_2 \\ \vdots \\ x_n} = 0_{\mathbb{K}^m}.
     \]
-    \item Sistemul de vectori $v_1, v_2, \dots, v_n$ este SLI daca si numai daca sistemul omogen de mai sus are ca unica solutie solutia nula, adica $\operatorname{rang} A = n$.
-    \item Fie $r = \operatorname{rang} A$. Dupa o eventuala renumerotare a vectorilor si permutarea corespunzatoare a coloanelor, transformarile elementare pe linii aduc matricea la forma
+    \item Sistemul de vectori $v_1, v_2, \dots, v_n$ este SLI daca si numai daca sistemul omogen de mai sus are ca unica solutie solutia nula, adica $\rang A = n$.
+    \item Daca $n=m$, vectorii $v_1,\dots,v_n$ formeaza o baza a lui $V$ daca si numai daca $\det A\ne 0$.
+    \item Fie $r = \rang A$. Dupa o eventuala renumerotare a vectorilor si permutarea corespunzatoare a coloanelor, transformarile elementare pe linii aduc matricea la forma
     \[
       \colvec{I_r & C \\ 0 & 0},
       \qquad C = [b_{ij}]_{\substack{1 \leq i \leq r \\ r+1 \leq j \leq n}}.
     \]
-    Coloanele blocului $I_r$ corespund vectorilor $v_1, v_2, \dots, v_r$, care formeaza baza. Pentru $r < j \leq n$, coloana corespunzatoare din $C$ contine coordonatele lui $v_j$ in aceasta baza:
+    Coloanele blocului $I_r$ corespund vectorilor $v_1, v_2, \dots, v_r$, care formeaza o baza a spatiului generat de $v_1,\dots,v_n$. Pentru $r < j \leq n$, coloana corespunzatoare din $C$ contine coordonatele lui $v_j$ in aceasta baza:
     \[
       v_j = \sum_{i=1}^r b_{ij}v_i.
     \]
@@ -242,19 +257,26 @@
   \end{align*}
   sunt subspatii vectoriale ale lui $V$.
 
-  \observatie Daca $W_1 = \operatorname{Sp}\{v_1, \dots, v_m\}$ si $W_2 = \operatorname{Sp}\{w_1, \dots, w_p\}$, atunci
+  \observatie Daca $W_1 = \Sp\{v_1, \dots, v_m\}$ si $W_2 = \Sp\{w_1, \dots, w_p\}$, atunci
   \[
-    W_1 + W_2 = \operatorname{Sp}\{v_1, \dots, v_m, w_1, \dots, w_p\}.
+    W_1 + W_2 = \Sp\{v_1, \dots, v_m, w_1, \dots, w_p\}.
   \]
 
   \propozitie Fie $V$ un $\mathbb{K}$-spatiu vectorial si $W_1, W_2$ subspatii vectoriale ale lui $V$. Atunci $W_1 \cup W_2$ este subspatiu vectorial al lui $V$ daca si numai daca $W_1 \subseteq W_2$ sau $W_2 \subseteq W_1$.
 
-  \definitie Fie $V$ un $\mathbb{K}$-spatiu vectorial si $W_1, W_2$ subspatii vectoriale ale lui $V$. Suma $W_1 + W_2$ se numeste \term{suma directa} si se noteaza $W_1 \oplus W_2$ daca $W_1 \cap W_2 = \{0_V\}$.
+  \definitie Fie $W_1, \dots, W_p$ subspatii ale $\mathbb{K}$-spatiului vectorial $V$. Suma lor se numeste \term{suma directa} si se noteaza $W_1 \oplus \dots \oplus W_p$ daca orice $v \in W_1 + \dots + W_p$ se scrie in mod unic sub forma $v=w_1+\dots+w_p$, cu $w_i \in W_i$.
 
-  \proprietate Fie $V$ un $\mathbb{K}$-spatiu vectorial si $W_1, W_2$ subspatii vectoriale ale lui $V$. Suma $W_1 + W_2$ este directa daca si numai daca orice $v \in W_1 + W_2$ se scrie in mod unic sub forma $v = w_1 + w_2$, cu $w_1 \in W_1$ si $w_2 \in W_2$.
+  \lema Suma $W_1+\dots+W_p$ este directa daca si numai daca
+  \[
+    W_i \cap \left(\sum_{j\ne i} W_j\right)=\{0_V\}, \qquad 1\leq i\leq p.
+  \]
+  In particular, $W_1+W_2$ este directa daca si numai daca $W_1\cap W_2=\{0_V\}$. Daca toate subspatiile sunt finit dimensionale, o conditie echivalenta este
+  \[
+    \dim_{\mathbb K}(W_1+\dots+W_p)=\sum_{i=1}^p\dim_{\mathbb K}W_i.
+  \]
 
   \begin{tcolorbox}
-    \teorema (Grassmann) Fie $V$ un $\mathbb{K}$-spatiu vectorial nenul finit dimensional si $U, W$ doua subspatii vectoriale nenule ale lui $V$. Atunci
+    \teorema (Grassmann) Fie $V$ un $\mathbb{K}$-spatiu vectorial finit dimensional si $U, W$ doua subspatii vectoriale ale lui $V$. Atunci
     \[
       \dim_{\mathbb{K}} U + \dim_{\mathbb{K}} W
       = \dim_{\mathbb{K}}(U + W) + \dim_{\mathbb{K}}(U \cap W).
@@ -271,6 +293,8 @@
     f(\alpha x + \beta y) = \alpha f(x) + \beta f(y),
     \qquad \forall \alpha, \beta \in \mathbb{K},\ x, y \in V_1.
   \]
+
+  \proprietate Echivalent, $f$ este liniara daca si numai daca $f(x+y)=f(x)+f(y)$ si $f(\alpha x)=\alpha f(x)$ pentru orice $x,y\in V_1$ si $\alpha\in\mathbb K$.
 
   \observatie Daca $V_1 = V_2$ si $f$ este aplicatie liniara, atunci $f$ se numeste \term{endomorfism}.
 
@@ -310,7 +334,7 @@
 
   \proprietate Aplicatia $f$ este surjectiva daca si numai daca $\im f = V_2$.
 
-  \observatie Pentru $A \in \mathcal{M}_{m, n}(\mathbb{K})$, nucleul $\Ker(A)$ si imaginea $\im A$ ale matricei sunt nucleul si imaginea aplicatiei liniare $x \mapsto Ax$ de la $\mathbb{K}^n$ la $\mathbb{K}^m$.
+  \observatie Pentru $A \in \mathcal{M}_{m, n}(\mathbb{K})$, nucleul $\Ker(A)$ si imaginea $\im A$ ale matricei sunt nucleul si imaginea aplicatiei liniare $x \mapsto Ax$ de la $\mathbb{K}^n$ la $\mathbb{K}^m$. Imaginea matricei este spatiul generat de coloanele sale.
 
   \begin{tcolorbox}
     \teorema (Rang--defect) Fie $f : V_1 \to V_2$ o aplicatie liniara intre doua $\mathbb{K}$-spatii vectoriale, cu $V_1$ nenul si finit dimensional. Atunci
@@ -320,6 +344,164 @@
   \end{tcolorbox}
 
   \observatie $\dim_{\mathbb{K}} \im f$ se numeste \term{rangul} lui $f$, iar $\dim_{\mathbb{K}} \Ker f$ se numeste \term{defectul} lui $f$.
+
+  \corolar Daca $V_1$ si $V_2$ au aceeasi dimensiune finita, atunci o aplicatie liniara $f : V_1 \to V_2$ este injectiva daca si numai daca este surjectiva.
+
+\end{enumerate}
+
+\section{Matricea asociata unei aplicatii liniare}
+\begin{enumerate}
+
+  \definitie Fie $f : U \to V$ o aplicatie liniara intre doua $\mathbb K$-spatii vectoriale finit dimensionale si $B_1=\{e_1,\dots,e_n\}$, $B_2=\{v_1,\dots,v_m\}$ baze ale lui $U$, respectiv $V$. Pentru fiecare $j$ scriem $f(e_j)=\sum_{i=1}^m a_{ij}v_i$. Matricea $A=[a_{ij}]_{m,n}$ se numeste \term{matricea asociata lui $f$ in raport cu bazele $B_1$ si $B_2$} si se noteaza $M_{B_1,B_2}(f)$. Coloana $j$ este $[f(e_j)]_{B_2}$.
+
+  \notatie Pentru un endomorfism si aceeasi baza $B$ in domeniu si codomeniu, scriem $M_B(f)=M_{B,B}(f)$.
+
+  \proprietate Pentru orice $u\in U$,
+  \[
+    [f(u)]_{B_2}=M_{B_1,B_2}(f)[u]_{B_1}.
+  \]
+
+  \begin{tcolorbox}
+    \teorema Cu notatiile de mai sus, fie $r=\rang A$. Dupa o eventuala permutare a coloanelor lui $A$ si renumerotarea corespunzatoare a vectorilor din $B_1$, transformarile elementare pe linii aduc matricea la forma
+    \[
+      \colvec{I_r & C \\ 0 & 0}, \qquad C=[b_{ij}]_{1\leq i\leq r,\ r<j\leq n}.
+    \]
+    \begin{enumerate}
+      \item $\im f=\Sp\{f(e_1),\dots,f(e_n)\}$ si $\{f(e_1),\dots,f(e_r)\}$ este o baza a lui $\im f$. Astfel, $\dim_{\mathbb K}\im f=r$.
+      \item $\Ker f=\{u\in U\mid A[u]_{B_1}=0\}$. O baza a lui $\Ker f$ este formata din vectorii
+      \[
+        u_j=e_j-\sum_{i=1}^{r}b_{ij}e_i,\qquad r<j\leq n.
+      \]
+    \end{enumerate}
+  \end{tcolorbox}
+
+  \propozitie Fie $f : V_1 \to V_2$ si $g : V_2 \to V_3$ aplicatii liniare intre spatii vectoriale finit dimensionale si $B_i$ o baza a lui $V_i$. Atunci $g\circ f$ este liniara si
+  \[
+    M_{B_1,B_3}(g\circ f)=M_{B_2,B_3}(g)M_{B_1,B_2}(f).
+  \]
+
+  \observatie Daca $f$ este endomorfism si $f^k$ este compunerea lui $f$ cu sine de $k$ ori, atunci $M_B(f^k)=M_B(f)^k$ pentru $k\in\mathbb N^*$. Aplicatia identica $1_V : v\mapsto v$ are matricea $M_B(1_V)=I_n$, unde $n=\dim_{\mathbb K}V$.
+
+  \propozitie Daca $V_1$ si $V_2$ au aceeasi dimensiune finita nenula, atunci $f : V_1\to V_2$ este izomorfism daca si numai daca $\det M_{B_1,B_2}(f)\ne 0$. In acest caz,
+  \[
+    M_{B_2,B_1}(f^{-1})=M_{B_1,B_2}(f)^{-1}.
+  \]
+
+  \definitie Fie $B_1$ si $B_2$ doua baze ale unui spatiu vectorial finit dimensional $V$. Se numeste \term{matricea de trecere de la baza $B_1$ la baza $B_2$} matricea $M_{B_1\to B_2}$ ale carei coloane sunt coordonatele vectorilor din $B_2$ in baza $B_1$.
+
+  \proprietate Matricea $M_{B_1\to B_2}=M_{B_2,B_1}(1_V)$ este inversabila si, pentru orice $v\in V$,
+  \[
+    [v]_{B_1}=M_{B_1\to B_2}[v]_{B_2}.
+  \]
+
+  \begin{tcolorbox}
+    \teorema (Schimbarea bazei) Fie $f : V_1\to V_2$ o aplicatie liniara, $B_1,B'_1$ baze ale lui $V_1$ si $B_2,B'_2$ baze ale lui $V_2$. Daca $A=M_{B_1\to B'_1}$ si $C=M_{B_2\to B'_2}$, atunci
+    \[
+      M_{B'_1,B'_2}(f)=C^{-1}M_{B_1,B_2}(f)A.
+    \]
+  \end{tcolorbox}
+
+  \definitie Fie $V,W$ doua $\mathbb K$-spatii vectoriale finit dimensionale. Notam cu $\mathcal L_{\mathbb K}(V,W)$ multimea aplicatiilor liniare de la $V$ la $W$. Aceasta este un $\mathbb K$-spatiu vectorial cu operatiile
+  \[
+    (f+g)(v)=f(v)+g(v),\qquad (\alpha f)(v)=\alpha f(v),\qquad v\in V.
+  \]
+
+  \propozitie Daca $\dim_{\mathbb K} V=n$, $\dim_{\mathbb K}W=m$ si $B_1,B_2$ sunt baze ale lui $V$, respectiv $W$, aplicatia $f\mapsto M_{B_1,B_2}(f)$ de la $\mathcal L_{\mathbb K}(V,W)$ la $\mathcal M_{m,n}(\mathbb K)$ este un izomorfism. In particular, $\dim_{\mathbb K}\mathcal L_{\mathbb K}(V,W)=mn$.
+
+\end{enumerate}
+
+\section{Valori si vectori proprii}
+\begin{enumerate}
+
+  \definitie Fie $f : V\to V$ un endomorfism al unui $\mathbb K$-spatiu vectorial finit dimensional. Un vector $v\neq 0_V$ se numeste \term{vector propriu} al lui $f$ daca exista $\lambda\in\mathbb K$ astfel incat $f(v)=\lambda v$. Scalarul $\lambda$ se numeste \term{valoare proprie}, iar multimea valorilor proprii ale lui $f$ se numeste \term{spectrul} lui $f$ si se noteaza $\sigma(f)$.
+
+  \proprietate Pentru $\lambda\in\sigma(f)$, multimea
+  \[
+    V_\lambda=\{v\in V\mid f(v)=\lambda v\}=\Ker(f-\lambda 1_V)
+  \]
+  este un subspatiu vectorial numit \term{subspatiul propriu} corespunzator lui $\lambda$. Vectorii proprii corespunzatori lui $\lambda$ sunt elementele nenule ale lui $V_\lambda$. In particular, $\lambda\in\sigma(f)$ daca si numai daca $f-\lambda 1_V$ nu este izomorfism.
+
+  \propozitie Daca $\lambda_1,\lambda_2\in\sigma(f)$ sunt distincte, atunci $V_{\lambda_1}\cap V_{\lambda_2}=\{0_V\}$. Mai general, daca $\lambda_1,\dots,\lambda_p$ sunt valori proprii distincte doua cate doua, atunci
+  \[
+    V_{\lambda_1}+\dots+V_{\lambda_p}=V_{\lambda_1}\oplus\dots\oplus V_{\lambda_p}.
+  \]
+
+  \observatie Valorile si vectorii proprii ai unei matrice $A\in\mathcal M_n(\mathbb K)$ sunt cele ale endomorfismului $x\mapsto Ax$. Astfel, pentru $x\neq 0$, relatia $Ax=\lambda x$ este echivalenta cu $(A-\lambda I_n)x=0$. Notam cu $\sigma(A)$ spectrul lui $A$.
+
+  \propozitie Fie $B$ o baza a lui $V$ si $A=M_B(f)$. Atunci $\sigma(f)=\sigma(A)$, iar $v$ este vector propriu pentru $f$ corespunzator valorii proprii $\lambda$ daca si numai daca $[v]_B$ este vector propriu pentru $A$ corespunzator lui $\lambda$.
+
+  \definitie Pentru $A=[a_{ij}]_{n,n}\in\mathcal M_n(\mathbb K)$, se numeste \term{urma} matricei $A$ suma $\Tr(A)=\sum_{i=1}^n a_{ii}$. Se numeste \term{polinomul caracteristic} al lui $A$ polinomul $P_A(X)=\det(A-X I_n)$.
+
+  \proprietate Coeficientii lui $X^n$ si $X^{n-1}$ in $P_A$ sunt $(-1)^n$, respectiv $(-1)^{n-1}\Tr(A)$, iar termenul liber este $\det A$. In particular, pentru $\lambda\in\mathbb K$, $\lambda\in\sigma(A)$ daca si numai daca $P_A(\lambda)=0$.
+
+  \definitie Matricele $A,B\in\mathcal M_n(\mathbb K)$ se numesc \term{asemenea}, si se scrie $A\sim B$, daca exista o matrice inversabila $C\in\mathcal M_n(\mathbb K)$ astfel incat $B=C^{-1}AC$.
+
+  \proprietate Doua matrice asemenea au acelasi polinom caracteristic.
+
+  \observatie Matricele aceluiasi endomorfism $f$ in doua baze $B$ si $B'$ sunt asemenea. Pentru $C=M_{B\to B'}$ avem $M_{B'}(f)=C^{-1}M_B(f)C$.
+
+  \definitie Se numeste \term{polinomul caracteristic} al endomorfismului $f$ polinomul $P_f=P_{M_B(f)}$, unde $B$ este o baza a lui $V$. Acest polinom este independent de baza aleasa.
+
+  \begin{tcolorbox}
+    \teorema Spectrul unui endomorfism $f$ este multimea radacinilor in $\mathbb K$ ale polinomului sau caracteristic:
+    \[
+      \lambda\in\sigma(f)\quad\Leftrightarrow\quad P_f(\lambda)=0.
+    \]
+  \end{tcolorbox}
+
+  \definitie Fie $\lambda\in\sigma(f)$. Ordinul $m_\lambda$ al radacinii $\lambda$ a lui $P_f$ se numeste \term{multiplicitatea algebrica}, iar $r_\lambda=\dim_{\mathbb K}V_\lambda$ se numeste \term{multiplicitatea geometrica} a valorii proprii $\lambda$. Aceleasi notiuni se aplica unei matrice prin endomorfismul $x\mapsto Ax$.
+
+  \begin{tcolorbox}
+    \teorema Pentru orice $\lambda\in\sigma(f)$,
+    \[
+      1\leq r_\lambda\leq m_\lambda.
+    \]
+  \end{tcolorbox}
+
+  \corolar O valoare proprie de multiplicitate algebrica $1$ are multiplicitatea geometrica $1$.
+
+  \begin{tcolorbox}
+    \teorema (Hamilton--Cayley) Orice matrice patrata $A$ verifica ecuatia sa caracteristica, $P_A(A)=0_{n,n}$.
+  \end{tcolorbox}
+
+\end{enumerate}
+
+\section{Diagonalizare}
+\begin{enumerate}
+
+  \observatie In aceasta sectiune, $\mathbb K$ este $\mathbb R$ sau $\mathbb C$.
+
+  \definitie O matrice $A\in\mathcal M_n(\mathbb K)$ se numeste \term{diagonalizabila peste $\mathbb K$} daca este asemenea cu o matrice diagonala $D$, adica exista o matrice inversabila $T$ astfel incat $T^{-1}AT=D$.
+
+  \proprietate Daca $T^{-1}AT=D$, coloana $j$ a lui $T$ este un vector propriu al lui $A$ corespunzator elementului $d_{jj}$ de pe diagonala lui $D$. Fiecare valoare proprie apare pe diagonala de un numar de ori egal cu multiplicitatea sa algebrica.
+
+  \proprietate O conditie necesara pentru ca $A$ sa fie diagonalizabila peste $\mathbb K$ este ca $P_A$ sa se descompuna in factori de gradul intai peste $\mathbb K$.
+
+  \begin{tcolorbox}
+    \teorema Fie $A\in\mathcal M_n(\mathbb K)$ cu $P_A(X)=(-1)^n\prod_{i=1}^p(X-\lambda_i)^{m_i}$, unde $\lambda_i\in\mathbb K$ sunt distincte doua cate doua. Notam cu $V_{\lambda_i}=\Ker(A-\lambda_i I_n)$ subspatiul propriu corespunzator lui $\lambda_i$. Atunci:
+    \begin{enumerate}
+      \item $A$ este diagonalizabila peste $\mathbb K$ daca si numai daca $\dim_{\mathbb K}V_{\lambda_i}=m_i$ pentru fiecare $i$.
+      \item In acest caz, alegand cate o baza pentru fiecare $V_{\lambda_i}$ si punand vectorii acestor baze pe coloanele lui $T$, obtinem $T^{-1}AT=D$. Pe diagonala lui $D$ se afla valorile proprii in ordinea coloanelor lui $T$, fiecare repetata de $m_i$ ori.
+    \end{enumerate}
+  \end{tcolorbox}
+
+  \definitie Un endomorfism $f : V\to V$ al unui spatiu vectorial nenul finit dimensional se numeste \term{diagonalizabil} daca exista o baza $B$ a lui $V$ in care $M_B(f)$ este diagonala.
+
+  \begin{tcolorbox}
+    \teorema Fie $B$ o baza a lui $V$. Endomorfismul $f$ este diagonalizabil daca si numai daca $M_B(f)$ este diagonalizabila.
+  \end{tcolorbox}
+
+  \begin{tcolorbox}
+    \teorema (Criteriul general de diagonalizare) Fie $f : V\to V$ un endomorfism, cu $\dim_{\mathbb K} V=n>0$, si $P_f(X)=(-1)^n\prod_{i=1}^p(X-\lambda_i)^{m_i}$, unde $\lambda_i\in\mathbb K$ sunt distincte doua cate doua. Urmatoarele afirmatii sunt echivalente:
+    \begin{enumerate}
+      \item $f$ este diagonalizabil.
+      \item Exista o baza a lui $V$ formata din vectori proprii ai lui $f$.
+      \item $V=V_{\lambda_1}\oplus\dots\oplus V_{\lambda_p}$.
+      \item $\dim_{\mathbb K}V_{\lambda_i}=m_i$ pentru orice $1\leq i\leq p$.
+    \end{enumerate}
+  \end{tcolorbox}
+
+  \corolar Daca $f$ este diagonalizabil si $B_i$ este o baza a lui $V_{\lambda_i}$ pentru fiecare valoare proprie $\lambda_i$, atunci $\bigcup_{i=1}^p B_i$ este o baza a lui $V$ in care matricea lui $f$ este diagonala.
 
 \end{enumerate}
 
