@@ -478,7 +478,7 @@
   \proprietate O conditie necesara pentru ca $A$ sa fie diagonalizabila peste $\mathbb K$ este ca $P_A$ sa se descompuna in factori de gradul intai peste $\mathbb K$.
 
   \begin{tcolorbox}
-    \teorema Fie $A\in\mathcal M_n(\mathbb K)$ cu $P_A(X)=(-1)^n\prod_{i=1}^p(X-\lambda_i)^{m_i}$, unde $\lambda_i\in\mathbb K$ sunt distincte doua cate doua. Notam cu $V_{\lambda_i}=\Ker(A-\lambda_i I_n)$ subspatiul propriu corespunzator lui $\lambda_i$. Atunci:
+    \teorema Fie $A\in\mathcal M_n(\mathbb K)$ cu $P_A(X)=(-1)^n\prod_{i=1}^p(X-\lambda_i)^{m_i}$ polinomul caracteristic al lui A, unde $\lambda_i\in\mathbb K$ sunt distincte doua cate doua. Notam cu $V_{\lambda_i}=\Ker(A-\lambda_i I_n)$ subspatiul propriu corespunzator lui $\lambda_i$. Atunci:
     \begin{enumerate}
       \item $A$ este diagonalizabila peste $\mathbb K$ daca si numai daca $\dim_{\mathbb K}V_{\lambda_i}=m_i$ pentru fiecare $i$.
       \item In acest caz, alegand cate o baza pentru fiecare $V_{\lambda_i}$ si punand vectorii acestor baze pe coloanele lui $T$, obtinem $T^{-1}AT=D$. Pe diagonala lui $D$ se afla valorile proprii in ordinea coloanelor lui $T$, fiecare repetata de $m_i$ ori.
@@ -492,7 +492,11 @@
   \end{tcolorbox}
 
   \begin{tcolorbox}
-    \teorema (Criteriul general de diagonalizare) Fie $f : V\to V$ un endomorfism, cu $\dim_{\mathbb K} V=n>0$, si $P_f(X)=(-1)^n\prod_{i=1}^p(X-\lambda_i)^{m_i}$, unde $\lambda_i\in\mathbb K$ sunt distincte doua cate doua. Urmatoarele afirmatii sunt echivalente:
+    \teorema (Criteriul general de diagonalizare) Fie $f : V\to V$ un endomorfism, cu $\dim_{\mathbb K} V=n>0$. Fie $P_f$ polinomul caracteristic al lui $f$, sub forma
+    \[
+      P_f(X)=(-1)^n\prod_{i=1}^p(X-\lambda_i)^{m_i},
+    \]
+    unde $\lambda_i\in\mathbb K$ sunt distincte doua cate doua. Urmatoarele afirmatii sunt echivalente:
     \begin{enumerate}
       \item $f$ este diagonalizabil.
       \item Exista o baza a lui $V$ formata din vectori proprii ai lui $f$.
